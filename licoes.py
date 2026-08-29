@@ -31,3 +31,14 @@ class ListaLicoes:
         self.codigo_idioma = codigo_idioma
         self.esq = None
         self.dir = None
+
+    def busca(self, codigo):
+        atual = self.codigo
+        while atual is not None:
+            if atual.cogigo == codigo:
+                return codigo
+            elif atual.codigo < codigo:
+                atual = atual.esq
+            else:
+                atual = atual.dir
+        return None
