@@ -1,5 +1,6 @@
 import json
 import random
+import teste
 
 class aula:
 
@@ -24,5 +25,5 @@ def gerar_codigo():
     return novo
 
           
-var = gerar_codigo()
+var = teste.Idioma.gerar_codigo()
 print(var)

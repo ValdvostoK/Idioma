@@ -60,52 +60,99 @@ class Idioma:
 
     def inserir(self, descricao):
         x = self.gerar_codigo()
-        print("X: ", x)
         y = Node(x, descricao)
-        print("descricao  ", y.descricao)
         atual = self.raiz
         while True:
             if  x < atual.codigo:
                 if atual.esq is None:
                     atual.esq = y
-                    lado = 1
                     break
                 atual = atual.esq
 
             elif x > atual.codigo:
                 if atual.dir is None:
                     atual.dir = y
-                    lado = 2
                     break
                 atual = atual.dir  
 
-        atualizada = 
+
         conf = input("Confirmar insercao(S/N)")
         if conf.lower() == "s":
-            self.save_json(y)
+            self.save_json()
         else:
             print("Op cancelada")      
 
         return None
+
+    def deletar(self, cod):
+        print(cod)
+
+    def excluir(self, codigo, atual = None):
+        print("atual  ", atual)
+        print("codigo  ", codigo)
+        if atual is None:
+            atual = self.raiz
+        print("prieiro atu", atual.descricao)    
+
+        if codigo < atual.codigo:
+            atual = self.excluir(codigo, atual.esq)
+
+        elif codigo > atual.codigo:
+            atual = self.excluir(codigo, atual.dir)
+            
+        else:
+            if atual.esq is None:
+                print("primeiro if  ", atual.esq)
+                return atual.dir
+            
+            elif atual.dir is None:
+                print("dir  ", atual.dir)
+                return atual.esq
+            
+            self.deletar(atual)
+        return atual
+
+    def dicionario(self, node, lista = None):
+
+        if lista is None:
+            lista = []
+
+        if node is None:
+            return lista
+         
+        lista.append({
+            "codigo": node.codigo,
+            "descricao": node.descricao,
+            "esq": node.esq.codigo if node.esq else None,
+            "dir": node.dir.codigo if node.dir else None
+        })
+
+        self.dicionario(node.esq, lista)
+        self.dicionario(node.dir, lista)
+
+        return lista
 
     def load_json(caminho):
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
         return dados["idiomas"]  
 
-    def save_json(x):
-        with open("ListaIdioma.json", "w") as f:
-            json.dump(x, f, indent = 2)  
+    def save_json(self):
+        dados = {"idiomas": self.dicionario(self.raiz)}
+        with open("ListaIdioma.json", "w", encoding="utf-8") as f:
+            json.dump(dados, f, indent = 4, ensure_ascii = False) 
+        print("Arquivo salvo") 
 
 arvore = Idioma()
 
-arvore.montagem()   
+arvore.montagem() 
 #print("Resultado do print", lista)
 
 x = int(input("Qual numero"))
-mouse = arvore.busca(x)
-print("mouse: ", mouse)
+#mouse = arvore.busca(x)
+#print("mouse: ", mouse)
 
 #desc = input("descricao  ")
 #print(arvore.inserir(desc))
 
+arvore.excluir(x)

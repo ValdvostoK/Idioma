@@ -1,22 +1,38 @@
 {
     "idiomas": [
         {
-            "codigo": 2,
-            "descricao": "Ingles",
-            "esq": 1,
-            "dir": 3
+            "codigo": 500000,
+            "descricao": "Inglês",
+            "esq": 139447,
+            "dir": 761362
         },
-
         {
-            "codigo": 1,
+            "codigo": 139447,
             "descricao": "Espanhol",
+            "esq": 110241,
+            "dir": 238514
+        },
+        {
+            "codigo": 110241,
+            "descricao": "Francês",
             "esq": null,
             "dir": null
         },
-
         {
-            "codigo": 3,
-            "descricao": "Alemao",
+            "codigo": 238514,
+            "descricao": "Italiano",
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": 761362,
+            "descricao": "Alemão",
+            "esq": null,
+            "dir": 887784
+        },
+        {
+            "codigo": 887784,
+            "descricao": "Grego",
             "esq": null,
             "dir": null
         }

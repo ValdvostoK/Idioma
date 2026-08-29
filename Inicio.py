@@ -1,21 +1,11 @@
-from nicegui import ui
+import json
 
-def root():
-    ui.sub_pages({
-        '/': table_page,
-        '/map/{lat}/{lon}': map_page,
-    }).classes('w-full')
+lista = {"codigo": 7, "descricao": "grego"}
 
-def table_page():
-    ui.table(rows=[
-        {'name': 'New York', 'lat': 40.7119, 'lon': -74.0027},
-        {'name': 'London', 'lat': 51.5074, 'lon': -0.1278},
-        {'name': 'Tokyo', 'lat': 35.6863, 'lon': 139.7722},
-    ]).props('flat bordered') \
-        .on('row-click', lambda e: ui.navigate.to(f'/map/{e.args[1]["lat"]}/{e.args[1]["lon"]}'))
+with open("Listaidioma.json", "r", encoding="utf-8") as f:
+    att = json.load(f)
 
-def map_page(lat: float, lon: float):
-    ui.leaflet(center=(lat, lon), zoom=10)
-    ui.link('Back to table', '/')
+att["idiomas"].append(lista)
 
-ui.run(root)
+with open("ListaIdioma.json", "w", encoding="utf-8") as g:
+    json.dump(att, g, indent=4)
