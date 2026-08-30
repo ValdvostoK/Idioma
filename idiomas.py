@@ -54,6 +54,8 @@ class ListaIdioma:
         if codigo == None:
             return ListaIdioma
         atual = self.root
+        with open("ListaIdioma.json", "r") as lista:
+            inserir = json.load(lista)
         while True:
             if codigo < atual.esq: 
                 if atual.esq is None:
@@ -67,3 +69,13 @@ class ListaIdioma:
                 atual = atual.dir 
         inserir = [item for item in data if item["codigo"]>0]    
         return None
+
+    def excluir(root, codigo):
+        if (codigo == None):
+            print("Nao existe")
+        elif(codigo < root):
+            ListaIdioma.excluir(root.esq, codigo)
+        elif(codigo > root):
+            ListaIdioma.excluir(root.dir, codigo)
+        return None
+            
