@@ -42,3 +42,43 @@ class ListaLicoes:
             else:
                 atual = atual.dir
         return None
+
+    def gerar_codigo(self):
+        while True:
+            novo = random.randint(1, 1000000)
+            if self.busca(novo) is None:
+                return novo
+
+    def adicionar(self, descricao)
+        codigo = self.gerar_codigo()
+        novo = ListaLicoes(codigo, descricao)
+        if codigo == None:
+            return None
+        if self.root is None:
+            self.root = novo
+            return None
+        atual = self.root
+        with open("Listalicoes.json", "r") as lista:
+            inserir = json.load(lista)
+        while True:
+            if codigo < atual.codigo:
+                if atual.esq is None:
+                    atual.esq = novo
+                    break 
+                atual = atual.esq
+            else:
+                if atual.dir is None:
+                    atual.dir = novo
+                    break
+                atual = atual.dir
+        inserir = [item for item in data if item["codigo"]>0]    
+        return None
+
+    def excluir(root, codigo)
+        if (codigo == None):
+            print("Nao existe")
+        elif(codigo < root):
+            ListaIdioma.excluir(root.esq, codigo)
+        elif(codigo > root):
+            ListaIdioma.excluir(root.dir, codigo)
+        return None
