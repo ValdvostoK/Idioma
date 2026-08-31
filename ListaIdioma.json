@@ -16,11 +16,23 @@
             "codigo": 110241,
             "descricao": "Francês",
             "esq": null,
+            "dir": 112419
+        },
+        {
+            "codigo": 112419,
+            "descricao": "Chinês",
+            "esq": null,
             "dir": null
         },
         {
             "codigo": 238514,
             "descricao": "Italiano",
+            "esq": null,
+            "dir": 442257
+        },
+        {
+            "codigo": 442257,
+            "descricao": "Japônes",
             "esq": null,
             "dir": null
         },

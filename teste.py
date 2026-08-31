@@ -84,36 +84,52 @@ class Idioma:
 
         return None
 
-    def deletar(self, cod):
-        print(cod)
+    def minimo(self, cod):
+        while cod.esq:
+            cod = cod.esq
+        return cod
 
     def excluir(self, codigo, atual = None):
-        print("atual  ", atual)
-        print("codigo  ", codigo)
+
         if atual is None:
             atual = self.raiz
         print("prieiro atu", atual.descricao)    
 
-        if codigo < atual.codigo:
-            atual = self.excluir(codigo, atual.esq)
+        if codigo is not atual.codigo:
+            if codigo < atual.codigo:
+                if atual.esq:
+                    atual = self.excluir(codigo, atual.esq)
+                    return atual
 
-        elif codigo > atual.codigo:
-            atual = self.excluir(codigo, atual.dir)
-            
-        else:
-            if atual.esq is None:
-                print("primeiro if  ", atual.esq)
-                return atual.dir
-            
-            elif atual.dir is None:
-                print("dir  ", atual.dir)
-                return atual.esq
-            
-            self.deletar(atual)
+            elif codigo > atual.codigo:
+                if atual.dir:
+                    atual = self.excluir(codigo, atual.dir)
+                    return atual
+   
+        if atual.esq is None:
+            print("atual.esq is none  ", atual)
+            return atual.dir
+                    
+        elif atual.dir is None:
+            print("dir  ", atual.dir)
+            return atual.esq
+
+        sucessor = Node(atual.dir, atual.dir.descricao)
+        sucessor = self.minimo(atual.dir)
+        print("sucess>  ", sucessor)
+        sucessor.esq = atual.dir
+        atual = atual.dir
+
         return atual
+
+    def remover(self, codigo):
+        self.excluir(codigo)
+        print(self.raiz)
+        self.save_json()
 
     def dicionario(self, node, lista = None):
 
+        print("Node dic  ", node)
         if lista is None:
             lista = []
 
@@ -127,7 +143,7 @@ class Idioma:
             "dir": node.dir.codigo if node.dir else None
         })
 
-        self.dicionario(node.esq, lista)
+        self.dicionario(node.esq, lista)       
         self.dicionario(node.dir, lista)
 
         return lista
@@ -155,4 +171,4 @@ x = int(input("Qual numero"))
 #desc = input("descricao  ")
 #print(arvore.inserir(desc))
 
-arvore.excluir(x)
+arvore.remover(x)
