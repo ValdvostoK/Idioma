@@ -115,15 +115,15 @@ class Idioma:
             return atual.esq
 
         sucessor = Node(atual.dir, atual.dir.descricao)
-        sucessor = self.minimo(atual.dir)
+        sucessor = self.minimo(sucessor)
         print("sucess>  ", sucessor)
-        sucessor.esq = atual.dir
-        atual = atual.dir
+        sucessor.esq = atual.dir  #sucess.dir tem que receber não o esq
+        atual = atual.dir        #Isso nem sentido faz, USAR UM SWAP PARA  
 
         return atual
 
     def remover(self, codigo):
-        self.excluir(codigo)
+        self.excluir(codigo)  #usar variavel
         print(self.raiz)
         self.save_json()
 
