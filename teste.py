@@ -4,11 +4,11 @@ import random
 
 class Node:
 
-    def __init__(self, codigo, descricao):
+    def __init__(self, codigo, descricao = None, esq = None, dir = None):
         self.codigo = codigo
         self.descricao = descricao
-        self.esq = None
-        self.dir = None
+        self.esq = esq
+        self.dir = dir
 
     def __repr__(self):
         return f"Node({self.codigo})"    
@@ -85,6 +85,8 @@ class Idioma:
         return None
 
     def minimo(self, cod):
+        print("Min cod  ", cod)
+        print("Min cod esq ", cod.esq)
         while cod.esq:
             cod = cod.esq
         return cod
@@ -95,36 +97,33 @@ class Idioma:
             atual = self.raiz
         print("prieiro atu", atual.descricao)    
 
-        if codigo is not atual.codigo:
-            if codigo < atual.codigo:
-                if atual.esq:
-                    atual = self.excluir(codigo, atual.esq)
-                    return atual
+        if codigo < atual.codigo:
+                atual.esq = self.excluir(codigo, atual.esq)
 
-            elif codigo > atual.codigo:
-                if atual.dir:
-                    atual = self.excluir(codigo, atual.dir)
-                    return atual
-   
-        if atual.esq is None:
-            print("atual.esq is none  ", atual)
-            return atual.dir
+        elif codigo > atual.codigo:
+                atual.dir = self.excluir(codigo, atual.dir)
+        else:
+            if atual.esq is None:
+                print("atual.esq is none  ", atual)
+                return atual.dir
                     
-        elif atual.dir is None:
-            print("dir  ", atual.dir)
-            return atual.esq
+            elif atual.dir is None:
+                print("dir  ", atual.dir)
+                return atual.esq
 
-        sucessor = Node(atual.dir, atual.dir.descricao)
-        sucessor = self.minimo(sucessor)
-        print("sucess>  ", sucessor)
-        sucessor.esq = atual.dir  #sucess.dir tem que receber não o esq
-        atual = atual.dir        #Isso nem sentido faz, USAR UM SWAP PARA  
+            print("atual dir  ", atual)
+            sucessor = atual.dir
+            sucessor = self.minimo(sucessor)
+            print("sucess>  ", sucessor)
+            atual.codigo = sucessor.codigo  
+            atual.dir = self.excluir(atual.codigo, atual.dir)     
 
+        print("atual  final", atual.codigo)
         return atual
 
     def remover(self, codigo):
-        self.excluir(codigo)  #usar variavel
-        print(self.raiz)
+        y = self.excluir(codigo)  #usar variavel
+        print("y   ", y)
         self.save_json()
 
     def dicionario(self, node, lista = None):
