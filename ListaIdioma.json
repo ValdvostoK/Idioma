@@ -3,14 +3,14 @@
         {
             "codigo": 500000,
             "descricao": "Inglês",
-            "esq": 442257,
+            "esq": 238514,
             "dir": 761362
         },
         {
-            "codigo": 442257,
+            "codigo": 238514,
             "descricao": "Espanhol",
             "esq": 110241,
-            "dir": null
+            "dir": 442257
         },
         {
             "codigo": 110241,
@@ -25,10 +25,22 @@
             "dir": null
         },
         {
+            "codigo": 442257,
+            "descricao": "Japônes",
+            "esq": null,
+            "dir": null
+        },
+        {
             "codigo": 761362,
             "descricao": "Alemão",
-            "esq": null,
+            "esq": 512493,
             "dir": 887784
+        },
+        {
+            "codigo": 512493,
+            "descricao": "Português",
+            "esq": null,
+            "dir": null
         },
         {
             "codigo": 887784,

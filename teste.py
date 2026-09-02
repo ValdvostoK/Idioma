@@ -116,9 +116,11 @@ class Idioma:
             sucessor = self.minimo(sucessor)
             print("sucess>  ", sucessor)
             atual.codigo = sucessor.codigo  
+            atual.descricao = sucessor.descricao  
+            print("atual sucess  ", atual)
             atual.dir = self.excluir(atual.codigo, atual.dir)     
 
-        print("atual  final", atual.codigo)
+        print("atual  final", atual.descricao)
         return atual
 
     def remover(self, codigo):
@@ -163,11 +165,11 @@ arvore = Idioma()
 arvore.montagem() 
 #print("Resultado do print", lista)
 
-x = int(input("Qual numero"))
+#x = int(input("Qual numero"))
 #mouse = arvore.busca(x)
 #print("mouse: ", mouse)
 
-#desc = input("descricao  ")
-#print(arvore.inserir(desc))
+desc = input("descricao  ")
+print(arvore.inserir(desc))
 
-arvore.remover(x)
+#arvore.remover(x)
