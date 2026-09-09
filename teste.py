@@ -4,9 +4,9 @@ import random
 
 class Node:
 
-    def __init__(self, codigo, descricao = None, esq = None, dir = None):
+    def __init__(self, codigo, posicao = None, esq = None, dir = None):
         self.codigo = codigo
-        self.descricao = descricao
+        self.posicao = posicao
         self.esq = esq
         self.dir = dir
 
@@ -23,8 +23,8 @@ class Idioma:
         nodes = {}
         for item in lista:
             codigo = item["codigo"]
-            descricao = item["descricao"]
-            nodes[codigo] = Node(codigo, descricao) 
+            posicao = item["posicao"]
+            nodes[codigo] = Node(codigo, posicao) 
 
         for item in lista:
             atual = nodes[item["codigo"]]
@@ -48,7 +48,7 @@ class Idioma:
             elif codigo > atual.codigo:
                 atual = atual.dir
         if atual is not None:
-            return atual
+            return atual.posicao
         else:            
             return None
 
@@ -60,7 +60,10 @@ class Idioma:
 
     def inserir(self, descricao):
         x = self.gerar_codigo()
-        y = Node(x, descricao)
+        lista = Idioma.load_json("IndexIdioma.json")
+        index = {"idiomas": [[item["codigo"], item["descricao"]] for item in lista]}
+        pos = len(index["idiomas"]) 
+        y = Node(x, pos)
         atual = self.raiz
         while True:
             if  x < atual.codigo:
@@ -78,6 +81,10 @@ class Idioma:
 
         conf = input("Confirmar insercao(S/N)")
         if conf.lower() == "s":
+            novo = {"codigo": x, "descricao": descricao}
+            index["idiomas"].append(novo)
+            with open("IndexIdioma.json", "w", encoding="utf-8") as g:
+                json.dump(index, g, indent=4, ensure_ascii=False)
             self.save_json()
         else:
             print("Op cancelada")      
@@ -94,8 +101,7 @@ class Idioma:
     def excluir(self, codigo, atual = None):
 
         if atual is None:
-            atual = self.raiz
-        print("prieiro atu", atual.descricao)    
+            atual = self.raiz    
 
         if codigo < atual.codigo:
                 atual.esq = self.excluir(codigo, atual.esq)
@@ -104,33 +110,34 @@ class Idioma:
                 atual.dir = self.excluir(codigo, atual.dir)
         else:
             if atual.esq is None:
-                print("atual.esq is none  ", atual)
                 return atual.dir
                     
             elif atual.dir is None:
-                print("dir  ", atual.dir)
                 return atual.esq
 
-            print("atual dir  ", atual)
             sucessor = atual.dir
             sucessor = self.minimo(sucessor)
-            print("sucess>  ", sucessor)
             atual.codigo = sucessor.codigo  
-            atual.descricao = sucessor.descricao  
-            print("atual sucess  ", atual)
+            atual.posicao = sucessor.posicao  
             atual.dir = self.excluir(atual.codigo, atual.dir)     
 
-        print("atual  final", atual.descricao)
         return atual
 
     def remover(self, codigo):
-        y = self.excluir(codigo)  #usar variavel
-        print("y   ", y)
-        self.save_json()
+        x = self.busca(codigo)
+        print("X;  ", x)
+        if x:
+            self.excluir(codigo)
+            index = Idioma.load_json("IndexIdioma.json")
+            index[x]["codigo"] = 0
+            with open("IndexIdioma.json", "w", encoding="utf-8") as g:
+                json.dump(index, g, indent=4, ensure_ascii=False)
+            self.save_json()
+        else:
+            print("Nao existe")
 
     def dicionario(self, node, lista = None):
 
-        print("Node dic  ", node)
         if lista is None:
             lista = []
 
@@ -139,7 +146,7 @@ class Idioma:
          
         lista.append({
             "codigo": node.codigo,
-            "descricao": node.descricao,
+            "posicao": node.posicao,
             "esq": node.esq.codigo if node.esq else None,
             "dir": node.dir.codigo if node.dir else None
         })
@@ -170,6 +177,6 @@ arvore.montagem()
 #print("mouse: ", mouse)
 
 desc = input("descricao  ")
-print(arvore.inserir(desc))
+arvore.inserir(desc)
 
 #arvore.remover(x)

@@ -2,49 +2,49 @@
     "idiomas": [
         {
             "codigo": 500000,
-            "descricao": "Inglês",
+            "posicao": 0,
             "esq": 238514,
             "dir": 761362
         },
         {
             "codigo": 238514,
-            "descricao": "Espanhol",
+            "posicao": 1,
             "esq": 110241,
             "dir": 442257
         },
         {
             "codigo": 110241,
-            "descricao": "Francês",
+            "posicao": 2,
             "esq": null,
             "dir": 112419
         },
         {
             "codigo": 112419,
-            "descricao": "Chinês",
+            "posicao": 3,
             "esq": null,
             "dir": null
         },
         {
             "codigo": 442257,
-            "descricao": "Japônes",
+            "posicao": 4,
             "esq": null,
             "dir": null
         },
         {
             "codigo": 761362,
-            "descricao": "Alemão",
+            "posicao": 5,
             "esq": 512493,
             "dir": 887784
         },
         {
             "codigo": 512493,
-            "descricao": "Português",
+            "posicao": 6,
             "esq": null,
             "dir": null
         },
         {
             "codigo": 887784,
-            "descricao": "Grego",
+            "posicao": 7,
             "esq": null,
             "dir": null
         }
