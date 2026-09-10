@@ -61,7 +61,7 @@ class Idioma:
     def inserir(self, descricao):
         x = self.gerar_codigo()
         lista = Idioma.load_json("IndexIdioma.json")
-        index = {"idiomas": [[item["codigo"], item["descricao"]] for item in lista]}
+        index = {"idiomas": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
         pos = len(index["idiomas"]) 
         y = Node(x, pos)
         atual = self.raiz
