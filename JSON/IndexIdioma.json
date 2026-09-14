@@ -4,41 +4,33 @@
             "codigo": 500000,
             "descricao": "Ingles"
         },
-
         {
             "codigo": 238514,
             "descricao": "Espanhol"
         },
-
         {
             "codigo": 110241,
             "descricao": "Fracês"
         },
-
         {
             "codigo": 112419,
             "descricao": "Chinês"
         },
-
         {
             "codigo": 442257,
             "descricao": "Japonês"
         },
-
         {
             "codigo": 761362,
             "descricao": "Alemão"
         },
-
         {
             "codigo": 512493,
             "descricao": "Português"
         },
-
         {
             "codigo": 887784,
             "descricao": "Grego"
         }
-
     ]
 }

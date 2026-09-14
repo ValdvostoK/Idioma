@@ -1,81 +1,183 @@
 import json
+from pathlib import Path
 import random
-import os
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
-json_path = os.path.join(base_dir, "ListaIdioma.json")
 
-try:
-    with open(json_path, "r") as file:
-        data = json.load(file)
-except json.JSONDecodeError as e:
-    print("Erro ao carregar JSON", e)
-    exit()
-except FileNotFoundError as e:
-    print("Arquivo nao encontrado", e)
-    exit()  
+class Node:
 
-lista = [item for item in data if item["codigo"]>0]
-
-update_path = os.path.join(base_dir, "ListaIdioma.json")
-with open(update_path, "w") as file:
-    json.dump(lista, file, indent = 4)
-
-print("Sucesso")    
-
-class ListaIdioma:
-
-    def __innit__(self, codigo, descricao):
+    def __init__(self, codigo, posicao = None, esq = None, dir = None):
         self.codigo = codigo
-        self.descricao = descricao
-        self.esq = None
-        self.dir = None 
+        self.posicao = posicao
+        self.esq = esq
+        self.dir = dir
+
+    def __repr__(self):
+        return f"Node({self.codigo})"    
+
+class Idioma:
+
+    def __init__(self):
+        self.raiz = None
+
+    def montagem(self):
+        lista = Idioma.load_json(json_Lista)
+        nodes = {}
+        for item in lista:
+            codigo = item["codigo"]
+            posicao = item["posicao"]
+            nodes[codigo] = Node(codigo, posicao) 
+
+        for item in lista:
+            atual = nodes[item["codigo"]]
+            atual_esq = item.get("esq")  
+            atual_dir = item.get("dir")  
+            if atual_esq is not None:
+                atual.esq = nodes.get(atual_esq)
+            if atual_dir is not None:
+                atual.dir = nodes.get(atual_dir)  
+
+        raiz_codigo = lista[0]["codigo"]
+        self.raiz = nodes[raiz_codigo]  
+
+        return nodes 
 
     def busca(self, codigo):
-        atual = self.codigo
-        while atual is not None:
-            if atual.codigo == codigo:
-                return codigo
-            elif codigo < atual.codigo:
+        atual = self.raiz
+        while atual is not None and atual.codigo != codigo:
+            if codigo < atual.codigo:
                 atual = atual.esq
-            else:
-                atual = atual.dir  
-        return None
+            elif codigo > atual.codigo:
+                atual = atual.dir
+        if atual is not None:
+            return atual.posicao
+        else:            
+            return None
 
     def gerar_codigo(self):
         while True:
             novo = random.randint(1, 1000000)
             if self.busca(novo) is None:
-                return novo  
-            
-    def adicionar(self, descricao):
-        codigo = self.gerar_codigo()
-        novo = ListaIdioma(codigo, descricao)
-        if codigo == None:
-            return ListaIdioma
-        atual = self.root
-        with open("ListaIdioma.json", "r") as lista:
-            inserir = json.load(lista)
+                return novo     
+
+    def inserir(self, descricao):
+        x = self.gerar_codigo()
+        lista = Idioma.load_json(json_Index)
+        index = {"idiomas": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
+        pos = len(index["idiomas"]) 
+        y = Node(x, pos)
+        atual = self.raiz
         while True:
-            if codigo < atual.esq: 
+            if  x < atual.codigo:
                 if atual.esq is None:
-                    atual.esq = novo
+                    atual.esq = y
                     break
-                atual = atual.esq    
-            else:
+                atual = atual.esq
+
+            elif x > atual.codigo:
                 if atual.dir is None:
-                    atual.dir = novo
+                    atual.dir = y
                     break
-                atual = atual.dir 
-        inserir = [item for item in data if item["codigo"]>0]    
+                atual = atual.dir  
+
+
+        conf = input("Confirmar insercao(S/N)")
+        if conf.lower() == "s":
+            novo = {"codigo": x, "descricao": descricao}
+            index["idiomas"].append(novo)
+            with open(json_Index, "w", encoding="utf-8") as g:
+                json.dump(index, g, indent=4, ensure_ascii=False)
+            self.save_json()
+        else:
+            print("Op cancelada")      
+
         return None
 
-    def excluir(root, codigo):
-        if (codigo == None):
+    def minimo(self, cod):
+        while cod.esq:
+            cod = cod.esq
+        return cod
+
+    def excluir(self, codigo, atual = None):
+
+        if atual is None:
+            atual = self.raiz    
+
+        if codigo < atual.codigo:
+                atual.esq = self.excluir(codigo, atual.esq)
+
+        elif codigo > atual.codigo:
+                atual.dir = self.excluir(codigo, atual.dir)
+        else:
+            if atual.esq is None:
+                return atual.dir
+                    
+            elif atual.dir is None:
+                return atual.esq
+
+            sucessor = atual.dir
+            sucessor = self.minimo(sucessor)
+            atual.codigo = sucessor.codigo  
+            atual.posicao = sucessor.posicao  
+            atual.dir = self.excluir(atual.codigo, atual.dir)     
+
+        return atual
+
+    def remover(self, codigo):
+        x = self.busca(codigo)
+        if x:
+            self.excluir(codigo)
+            index = Idioma.load_json(json_Index)
+            index[x]["codigo"] = 0
+            with open(json_Index, "w", encoding="utf-8") as g:
+                json.dump(index, g, indent=4, ensure_ascii=False)
+            self.save_json()
+        else:
             print("Nao existe")
-        elif(codigo < root):
-            ListaIdioma.excluir(root.esq, codigo)
-        elif(codigo > root):
-            ListaIdioma.excluir(root.dir, codigo)
-        return None
-            
+
+    def dicionario(self, node, lista = None):
+
+        if lista is None:
+            lista = []
+
+        if node is None:
+            return lista
+         
+        lista.append({
+            "codigo": node.codigo,
+            "posicao": node.posicao,
+            "esq": node.esq.codigo if node.esq else None,
+            "dir": node.dir.codigo if node.dir else None
+        })
+
+        self.dicionario(node.esq, lista)       
+        self.dicionario(node.dir, lista)
+
+        return lista
+
+    def load_json(caminho):
+        with open(caminho, "r", encoding = "utf-8") as f:
+            dados = json.load(f)  
+        return dados["idiomas"]  
+
+    def save_json(self):
+        dados = {"idiomas": self.dicionario(self.raiz)}
+        with open(json_Lista, "w", encoding="utf-8") as f:
+            json.dump(dados, f, indent = 4, ensure_ascii = False) 
+        print("Arquivo salvo") 
+
+json_Lista = Path(__file__).parent / "JSON" / "ListaIdioma.json"
+json_Index = Path(__file__).parent / "JSON" / "IndexIdioma.json"
+
+arvore = Idioma()
+
+arvore.montagem() 
+#print("Resultado do print", lista)
+
+x = int(input("Qual numero"))
+#mouse = arvore.busca(x)
+#print("mouse: ", mouse)
+
+#desc = input("descricao  ")
+#arvore.inserir(desc)
+
+arvore.remover(x)
