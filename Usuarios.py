@@ -1,10 +1,9 @@
 import json
 from pathlib import Path
 import random
-import Idiomas
 
-json_Lista = Path(__file__).parent / "JSON" / "ListaPalavra.json"
-json_Index = Path(__file__).parent / "JSON" / "IndexPalavra.json"
+json_Lista = Path(__file__).parent / "JSON" / "ListaUsuario.json"
+json_Index = Path(__file__).parent / "JSON" / "IndexUsuario.json"
 
 class Node:
 
@@ -15,22 +14,22 @@ class Node:
         self.dir = dir
 
     def __repr__(self):
-        return f"Node({self.codigo})"  
+        return f"Node({self.codigo})"   
 
-class Palavra:
+class Usuario:
 
-    def __innit__(self):
+    def __init__(self):
         self.raiz = None
         self.montagem()
 
     def montagem(self):
-        lista = Palavra.load_json(json_Lista)
+        lista = Usuario.load_json(json_Lista)
         nodes = {}
         for item in lista:
             codigo = item["codigo"]
             posicao = item["posicao"]
             nodes[codigo] = Node(codigo, posicao) 
-    
+
         for item in lista:
             atual = nodes[item["codigo"]]
             atual_esq = item.get("esq")  
@@ -39,10 +38,10 @@ class Palavra:
                 atual.esq = nodes.get(atual_esq)
             if atual_dir is not None:
                 atual.dir = nodes.get(atual_dir)  
-    
+
         raiz_codigo = lista[0]["codigo"]
-        self.raiz = nodes[raiz_codigo] 
-    
+        self.raiz = nodes[raiz_codigo]  
+
         return nodes 
 
     def busca(self, codigo):
@@ -57,29 +56,13 @@ class Palavra:
         else:            
             return None
 
-    def gerar_codigo(self):
-        while True:
-            novo = random.randint(1, 1000000)
-            if self.busca(novo) is None:
-                return novo 
-
     def inserir(self):
-        self.montagem()
         #x = self.gerar_codigo()
-        print(self.raiz)
-        descricao = input("Qual descricao? ")
+        descricao = input("Qual nome? ")
         x = descricao
-        cod_idioma = input("Qual idioma? ")
-        #Idiomas.Idioma().busca(cod_idioma)
-        trad = input("Traducao:  ")
-        nvl = int(input("Qual nivel? "))
-        lista = Palavra.load_json(json_Index)
-        index = {"palavras": [{"codigo": item["codigo"],
-                               "cod_idioma": item["cod_idioma"],
-                               "nivel": item["nivel"],
-                               "descricao": item["descricao"],
-                               "traducao": item["traducao"]} for item in lista]}
-        pos = len(index["palavras"]) 
+        lista = Usuario.load_json(json_Index)
+        index = {"usuarios": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
+        pos = len(index["usuarios"]) 
         y = Node(x, pos)
         atual = self.raiz
         while True:
@@ -97,9 +80,8 @@ class Palavra:
 
         conf = input("Confirmar insercao(S/N)")
         if conf.lower() == "s":
-            novo = {"codigo": x, "cod_idioma": cod_idioma, "nivel": nvl,
-                     "descricao": descricao, "traducao": trad}
-            index["palavras"].append(novo)
+            novo = {"codigo": x, "descricao": descricao}
+            index["usuarios"].append(novo)
             with open(json_Index, "w", encoding="utf-8") as g:
                 json.dump(index, g, indent=4, ensure_ascii=False)
             self.save_json()
@@ -128,20 +110,13 @@ class Palavra:
 
         return lista
 
-    def save_json(self):
-        dados = {"palavras": self.dicionario(self.raiz)}
-        with open(json_Lista, "w", encoding="utf-8") as f:
-            json.dump(dados, f, indent = 4, ensure_ascii = False) 
-        print("Arquivo salvo")
-
     def load_json(caminho):
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
-        return dados["palavras"]
+        return dados["usuarios"]  
 
-pal = Palavra()
-#pal.montagem()
-#pal.montagem()
-#x=input("blala")
-pal.inserir()
-#print(pal.montagem())
+    def save_json(self):
+        dados = {"usuarios": self.dicionario(self.raiz)}
+        with open(json_Lista, "w", encoding="utf-8") as f:
+            json.dump(dados, f, indent = 4, ensure_ascii = False) 
+        print("Arquivo salvo") 

@@ -1,36 +1,28 @@
 {
     "idiomas": [
         {
-            "codigo": 500000,
+            "codigo": "Ingles",
             "descricao": "Ingles"
         },
         {
-            "codigo": 238514,
+            "codigo": "Alemao",
+            "descricao": "Alemao"
+        },
+        {
+            "codigo": "Espanhol",
             "descricao": "Espanhol"
         },
         {
-            "codigo": 110241,
-            "descricao": "Fracês"
+            "codigo": "Frances",
+            "descricao": "Frances"
         },
         {
-            "codigo": 112419,
-            "descricao": "Chinês"
+            "codigo": "Russo",
+            "descricao": "Russo"
         },
         {
-            "codigo": 442257,
-            "descricao": "Japonês"
-        },
-        {
-            "codigo": 761362,
-            "descricao": "Alemão"
-        },
-        {
-            "codigo": 512493,
-            "descricao": "Português"
-        },
-        {
-            "codigo": 887784,
-            "descricao": "Grego"
+            "codigo": "Japones",
+            "descricao": "Japones"
         }
     ]
 }

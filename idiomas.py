@@ -2,6 +2,8 @@ import json
 from pathlib import Path
 import random
 
+json_Lista = Path(__file__).parent / "JSON" / "ListaIdioma.json"
+json_Index = Path(__file__).parent / "JSON" / "IndexIdioma.json"
 
 class Node:
 
@@ -18,6 +20,7 @@ class Idioma:
 
     def __init__(self):
         self.raiz = None
+        self.montagem()
 
     def montagem(self):
         lista = Idioma.load_json(json_Lista)
@@ -59,8 +62,10 @@ class Idioma:
             if self.busca(novo) is None:
                 return novo     
 
-    def inserir(self, descricao):
-        x = self.gerar_codigo()
+    def inserir(self):
+        #x = self.gerar_codigo()
+        descricao = input("Qual nome? ")
+        x = descricao
         lista = Idioma.load_json(json_Index)
         index = {"idiomas": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
         pos = len(index["idiomas"]) 
@@ -78,7 +83,6 @@ class Idioma:
                     atual.dir = y
                     break
                 atual = atual.dir  
-
 
         conf = input("Confirmar insercao(S/N)")
         if conf.lower() == "s":
@@ -122,7 +126,8 @@ class Idioma:
 
         return atual
 
-    def remover(self, codigo):
+    def remover(self):
+        codigo = input("Qual codigo: ")
         x = self.busca(codigo)
         if x:
             self.excluir(codigo)
@@ -165,19 +170,17 @@ class Idioma:
             json.dump(dados, f, indent = 4, ensure_ascii = False) 
         print("Arquivo salvo") 
 
-json_Lista = Path(__file__).parent / "JSON" / "ListaIdioma.json"
-json_Index = Path(__file__).parent / "JSON" / "IndexIdioma.json"
 
 arvore = Idioma()
 
-arvore.montagem() 
+#arvore.montagem() 
 #print("Resultado do print", lista)
 
-x = int(input("Qual numero"))
+#x = int(input("Qual numero"))
 #mouse = arvore.busca(x)
 #print("mouse: ", mouse)
 
 #desc = input("descricao  ")
-#arvore.inserir(desc)
-
-arvore.remover(x)
+arvore.inserir()
+#print(arvore)
+#arvore.remover()
