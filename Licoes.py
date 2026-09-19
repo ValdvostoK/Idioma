@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-import random
+import unicodedata
 import Idiomas
 import Palavras
 
@@ -44,6 +44,11 @@ class Licao:
         self.raiz = nodes[raiz_codigo]  
     
         return nodes 
+
+    def limpar(self, texto):
+        decompor = unicodedata.normalize('NFD', texto)
+        acento = "".join(c for c in decompor if unicodedata.category(c) != 'Mn')
+        return acento.casefold()
 
     def inserir(self):
         x = self.gerar_codigo()
@@ -119,3 +124,7 @@ class Licao:
             dados = json.load(f)  
         return dados["licoes"]
 
+
+#text = input("Digite:  ")
+#limpo = Licao.limpar(text)
+#print(limpo)

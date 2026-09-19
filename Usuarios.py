@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import random
+import Idiomas
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaUsuario.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexUsuario.json"
@@ -58,10 +59,21 @@ class Usuario:
 
     def inserir(self):
         #x = self.gerar_codigo()
-        descricao = input("Qual nome? ")
-        x = descricao
+        nome = input("Qual nome? ")
+        x = nome
+        senha = input("Senha: ")
+        checagem = None
+        while checagem is None:
+            cod_idioma = input("Qual idioma deseja aprender? ")
+            checagem = Idiomas.Idioma().busca(cod_idioma)
+            if checagem is None:
+                print("Codigo invalido")
         lista = Usuario.load_json(json_Index)
-        index = {"usuarios": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
+        index = {"usuarios": [{"codigo": item["codigo"], "nome": item["nome"],
+                               "senha": item["senha"],
+                               "cod_idioma": item["cod_idioma"],
+                               "nivel": item["nivel"],
+                               "pontos_atual": item["pontos_atual"]} for item in lista]}
         pos = len(index["usuarios"]) 
         y = Node(x, pos)
         atual = self.raiz
@@ -80,7 +92,8 @@ class Usuario:
 
         conf = input("Confirmar insercao(S/N)")
         if conf.lower() == "s":
-            novo = {"codigo": x, "descricao": descricao}
+            novo = {"codigo": x, "nome": nome, "senha": senha, "cod_idioma": cod_idioma,
+                    "nivel": 1, "pontos_atual": 0}
             index["usuarios"].append(novo)
             with open(json_Index, "w", encoding="utf-8") as g:
                 json.dump(index, g, indent=4, ensure_ascii=False)
@@ -120,3 +133,8 @@ class Usuario:
         with open(json_Lista, "w", encoding="utf-8") as f:
             json.dump(dados, f, indent = 4, ensure_ascii = False) 
         print("Arquivo salvo") 
+
+
+arvore = Usuario()
+
+#arvore.inserir()

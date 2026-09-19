@@ -1,0 +1,16 @@
+{
+    "usuarios": [
+        {
+            "codigo": "Valdrei",
+            "posicao": 0,
+            "esq": "Barbara",
+            "dir": null
+        },
+        {
+            "codigo": "Barbara",
+            "posicao": 1,
+            "esq": null,
+            "dir": null
+        }
+    ]
+}

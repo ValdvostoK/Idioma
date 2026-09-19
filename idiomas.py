@@ -171,7 +171,7 @@ class Idioma:
         print("Arquivo salvo") 
 
 
-arvore = Idioma()
+#arvore = Idioma()
 
 #arvore.montagem() 
 #print("Resultado do print", lista)
@@ -181,6 +181,6 @@ arvore = Idioma()
 #print("mouse: ", mouse)
 
 #desc = input("descricao  ")
-arvore.inserir()
+#arvore.inserir()
 #print(arvore)
 #arvore.remover()

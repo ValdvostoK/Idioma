@@ -1,0 +1,20 @@
+{
+    "usuarios": [
+        {
+            "codigo": "Valdrei",
+            "nome": "Valdrei",
+            "senha": "python",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "pontos_atual": 71
+        },
+        {
+            "codigo": "Barbara",
+            "nome": "Barbara",
+            "senha": "cachorro",
+            "cod_idioma": "Alemao",
+            "nivel": 1,
+            "pontos_atual": 0
+        }
+    ]
+}
