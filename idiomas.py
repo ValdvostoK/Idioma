@@ -64,7 +64,7 @@ class Idioma:
 
     def inserir(self):
         #x = self.gerar_codigo()
-        descricao = input("Qual nome? ")
+        descricao = input("Qual nome? Idioma")
         x = descricao
         lista = Idioma.load_json(json_Index)
         index = {"idiomas": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}

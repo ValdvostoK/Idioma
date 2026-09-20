@@ -59,7 +59,7 @@ class Usuario:
 
     def inserir(self):
         #x = self.gerar_codigo()
-        nome = input("Qual nome? ")
+        nome = input("Qual nome? Usuario")
         x = nome
         senha = input("Senha: ")
         checagem = None

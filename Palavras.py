@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 import random
-import Exercicios
+#import Exercicios
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaPalavra.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexPalavra.json"
@@ -111,11 +111,7 @@ class Palavra:
     def exercicio(self, nivel, idioma):
         lista = Palavra.load_json(json_Index)
         nivelada = [(p["codigo"], p["traducao"]) for p in lista if p["nivel"] == nivel and p["cod_idioma"] == idioma]
-        print(nivelada)
-        tam = len(nivelada)
-        print("tam", tam)
-        nova = random.sample(nivelada, 2)
-        print(nova)
+        nova = random.sample(nivelada, 4)
         return nova
 
     def dicionario(self, node, lista = None):

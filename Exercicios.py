@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 import random
+import Palavras
 import Idiomas
-from Palavras import Palavra
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaExercicio.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexExercicio.json"
@@ -82,9 +82,20 @@ class Exercicio:
 
     def exercicios(self, nivel):
         idioma = "Ingles"
-        lontra = Palavra()
-        lista = lontra.exercicio(nivel, idioma)
-        print("Lista final", lista)
+        lista = Palavras.Palavra().exercicio(nivel, idioma)
+        dados = self.load_json(json_Index)
+        pergunta = dados[0]["pergunta"]
+        traducao = random.randint(0, 3)
+        print(pergunta, lista[traducao][1], "?")
+
+        for x, y in lista:
+            print(x)
+        resposta = input()
+        
+        if resposta.lower() == lista[traducao][0].lower():
+            print("Correto")
+        else:
+            print("Incorreto")
 
     def dicionario(self, node, lista = None):
 
@@ -112,10 +123,11 @@ class Exercicio:
             json.dump(dados, f, indent = 4, ensure_ascii = False) 
         print("Arquivo salvo")
 
-    def load_json(caminho):
+    def load_json(self, caminho):
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
         return dados["exercicios"]
 
 ex = Exercicio()
-ex.exercicios(1)
+massa = 1
+ex.exercicios(massa)
