@@ -23,7 +23,7 @@ class Idioma:
         self.montagem()
 
     def montagem(self):
-        lista = Idioma.load_json(json_Lista)
+        lista = self.load_json(json_Lista)
         nodes = {}
         for item in lista:
             codigo = item["codigo"]
@@ -66,7 +66,7 @@ class Idioma:
         #x = self.gerar_codigo()
         descricao = input("Qual nome? Idioma")
         x = descricao
-        lista = Idioma.load_json(json_Index)
+        lista = self.load_json(json_Index)
         index = {"idiomas": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
         pos = len(index["idiomas"]) 
         y = Node(x, pos)
@@ -159,7 +159,7 @@ class Idioma:
 
         return lista
 
-    def load_json(caminho):
+    def load_json(self, caminho):
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
         return dados["idiomas"]  

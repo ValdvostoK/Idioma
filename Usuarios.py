@@ -5,6 +5,7 @@ import Idiomas
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaUsuario.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexUsuario.json"
+json_IndexIdioma = Path(__file__).parent / "JSON" / "IndexIdioma.json"
 
 class Node:
 
@@ -24,7 +25,7 @@ class Usuario:
         self.montagem()
 
     def montagem(self):
-        lista = Usuario.load_json(json_Lista)
+        lista = self.load_json(json_Lista)
         nodes = {}
         for item in lista:
             codigo = item["codigo"]
@@ -103,6 +104,17 @@ class Usuario:
 
         return None
 
+    def ranking(self):
+        dados = self.load_json(json_Index)
+        idiomas = Idiomas.Idioma().load_json(json_IndexIdioma)
+        print("Idiomas user", idiomas)
+        dados.sort(key=lambda usuario: usuario['pontos_atual'], reverse=True)
+
+        for x, y in enumerate(dados, start = 1):
+            nome = y['nome']
+            pontos = y["pontos_atual"]
+            print(f'{x}° Lugar: {nome} - {pontos} pontos')
+
     def dicionario(self, node, lista = None):
 
         if lista is None:
@@ -123,7 +135,7 @@ class Usuario:
 
         return lista
 
-    def load_json(caminho):
+    def load_json(self, caminho):
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
         return dados["usuarios"]  
@@ -136,5 +148,6 @@ class Usuario:
 
 
 arvore = Usuario()
+arvore.ranking()
 
 #arvore.inserir()

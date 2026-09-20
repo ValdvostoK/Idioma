@@ -50,7 +50,7 @@ class Exercicio:
         #x = self.gerar_codigo()
         descricao = input("Qual nome? ")
         x = descricao
-        lista = Exercicio.load_json(json_Index)
+        lista = self.load_json(json_Index)
         index = {"exercicios": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
         pos = len(index["exercicios"]) 
         y = Node(x, pos)
@@ -91,7 +91,7 @@ class Exercicio:
         for x, y in lista:
             print(x)
         resposta = input()
-        
+
         if resposta.lower() == lista[traducao][0].lower():
             print("Correto")
         else:
@@ -130,4 +130,5 @@ class Exercicio:
 
 ex = Exercicio()
 massa = 1
+#ex.inserir()
 ex.exercicios(massa)

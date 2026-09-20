@@ -33,6 +33,12 @@
         {
             "codigo": "Japones",
             "posicao": 5,
+            "esq": "Italiano",
+            "dir": null
+        },
+        {
+            "codigo": "Italiano",
+            "posicao": 6,
             "esq": null,
             "dir": null
         }
