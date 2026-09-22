@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 import unicodedata
-import Idiomas
+import Exercicios
 import Palavras
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaLicao.json"
@@ -92,6 +92,11 @@ class Licao:
 
         return None
 
+    def exercicio(self, idioma, nivel):
+        ex1 = Exercicios.Exercicio().pergunta(idioma, nivel)
+        ex2 = Exercicios.Exercicio().pergunta(idioma, nivel)
+        ex3 = Exercicios.Exercicio().pergunta(idioma, nivel)
+        return ex1 + ex2 + ex3
 
     def dicionario(self, node, lista = None):
 

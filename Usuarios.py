@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import random
 import Idiomas
+import Licoes
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaUsuario.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexUsuario.json"
@@ -104,6 +105,21 @@ class Usuario:
 
         return None
 
+    def aula(self, user):
+        pos = self.busca(user)
+        lista = self.load_json(json_Index)
+        idioma = lista[pos]["cod_idioma"]
+        nivel = lista[pos]["nivel"]
+        pontos = Licoes.Licao().exercicio(idioma, nivel)
+        lista[pos]["pontos_atual"] += pontos
+
+        with open(json_Index, "r", encoding="utf-8") as f:
+            dados = json.load(f)
+        dados["usuarios"] = lista
+                
+        with open(json_Index, "w", encoding="utf-8") as g:
+            json.dump(dados, g, indent=4, ensure_ascii=False)
+
     def ranking(self):
         dados = self.load_json(json_Index)
         idiomas = Idiomas.Idioma().load_json(json_IndexIdioma)
@@ -148,6 +164,6 @@ class Usuario:
 
 
 arvore = Usuario()
-arvore.ranking()
-
+#arvore.ranking()
+arvore.aula("Valdrei") 
 #arvore.inserir()

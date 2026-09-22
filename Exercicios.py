@@ -80,8 +80,7 @@ class Exercicio:
 
         return None
 
-    def exercicios(self, nivel):
-        idioma = "Ingles"
+    def pergunta(self, idioma, nivel):
         lista = Palavras.Palavra().exercicio(nivel, idioma)
         dados = self.load_json(json_Index)
         pergunta = dados[0]["pergunta"]
@@ -94,8 +93,10 @@ class Exercicio:
 
         if resposta.lower() == lista[traducao][0].lower():
             print("Correto")
+            return dados[0]["pontos"]
         else:
             print("Incorreto")
+            return (dados[0]["pontos"]*(-0.1))
 
     def dicionario(self, node, lista = None):
 
@@ -128,7 +129,7 @@ class Exercicio:
             dados = json.load(f)  
         return dados["exercicios"]
 
-ex = Exercicio()
-massa = 1
+#ex = Exercicio()
+#massa = 1
 #ex.inserir()
-ex.exercicios(massa)
+#ex.exercicios(massa)
