@@ -70,7 +70,7 @@ class Usuario:
             checagem = Idiomas.Idioma().busca(cod_idioma)
             if checagem is None:
                 print("Codigo invalido")
-        lista = Usuario.load_json(json_Index)
+        lista = self.load_json(json_Index)
         index = {"usuarios": [{"codigo": item["codigo"], "nome": item["nome"],
                                "senha": item["senha"],
                                "cod_idioma": item["cod_idioma"],
@@ -110,8 +110,18 @@ class Usuario:
         lista = self.load_json(json_Index)
         idioma = lista[pos]["cod_idioma"]
         nivel = lista[pos]["nivel"]
-        pontos = Licoes.Licao().exercicio(idioma, nivel)
+        pontos = int(Licoes.Licao().exercicio(idioma, nivel))
         lista[pos]["pontos_atual"] += pontos
+        level = str(lista[pos]["pontos_atual"])
+        antiga = int(level)
+        if len(level) > 2:
+            level = int(level[:-2])
+            lista[pos]["nivel"] = level + 1
+
+        if antiga < lista[pos]["nivel"]:
+            print(f'Subiu de nivel')
+        elif antiga > lista[pos]["nivel"]:
+            print(f'Caiu de nivel')
 
         with open(json_Index, "r", encoding="utf-8") as f:
             dados = json.load(f)

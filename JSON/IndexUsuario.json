@@ -5,16 +5,24 @@
             "nome": "Valdrei",
             "senha": "python",
             "cod_idioma": "Ingles",
-            "nivel": 1,
-            "pontos_atual": 71
+            "nivel": 2,
+            "pontos_atual": 111
         },
         {
             "codigo": "Barbara",
             "nome": "Barbara",
             "senha": "cachorro",
             "cod_idioma": "Alemao",
-            "nivel": 1,
+            "nivel": 2,
             "pontos_atual": 110
+        },
+        {
+            "codigo": "Nicholas",
+            "nome": "Nicholas",
+            "senha": "moto",
+            "cod_idioma": "Alemao",
+            "nivel": 3,
+            "pontos_atual": 200
         }
     ]
 }
