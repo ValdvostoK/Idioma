@@ -1,0 +1,39 @@
+{
+    "palavras": [
+        {
+            "codigo": "Hello",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "descricao": "Hello",
+            "traducao": "Oi"
+        },
+        {
+            "codigo": "Water",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "descricao": "Water",
+            "traducao": "Agua"
+        },
+        {
+            "codigo": "Table",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "descricao": "Table",
+            "traducao": "Mesa"
+        },
+        {
+            "codigo": "Pencil",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "descricao": "Pencil",
+            "traducao": "Lapis"
+        },
+        {
+            "codigo": "Dog",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "descricao": "Dog",
+            "traducao": "Cachorro"
+        }
+    ]
+}

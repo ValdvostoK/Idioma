@@ -126,10 +126,15 @@ class Idioma:
         x = self.busca(codigo)
         if x:
             self.excluir(codigo)
-            index = Idioma.load_json(json_Index)
+            index =  self.load_json(json_Index)
             index[x]["codigo"] = 0
+
+            with open(json_Index, "r", encoding="utf-8") as f:
+                dados = json.load(f)
+            dados["idiomas"] = index
+
             with open(json_Index, "w", encoding="utf-8") as g:
-                json.dump(index, g, indent=4, ensure_ascii=False)
+                json.dump(dados, g, indent=4, ensure_ascii=False)
             self.save_json()
         else:
             print("Nao existe")
