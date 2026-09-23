@@ -27,13 +27,6 @@
             "nivel": 1,
             "descricao": "Pencil",
             "traducao": "Lapis"
-        },
-        {
-            "codigo": "Dog",
-            "cod_idioma": "Ingles",
-            "nivel": 1,
-            "descricao": "Dog",
-            "traducao": "Cachorro"
         }
     ]
 }

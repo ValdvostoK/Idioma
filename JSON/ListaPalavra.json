@@ -3,14 +3,8 @@
         {
             "codigo": "Hello",
             "posicao": 0,
-            "esq": "Dog",
-            "dir": "Water"
-        },
-        {
-            "codigo": "Dog",
-            "posicao": 4,
             "esq": null,
-            "dir": null
+            "dir": "Water"
         },
         {
             "codigo": "Water",

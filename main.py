@@ -1,8 +1,5 @@
 import Usuarios
-import json
-from pathlib import Path
 
-json_Index = Path(__file__).parent / "JSON" / "IndexUsuario.json"
 
 def MenuAdmin():
 	print("1 - Inserir")
@@ -24,7 +21,7 @@ def MenuAdmin():
 			classe = getattr(modulo, j[:-1])
 			objeto = classe()
 
-			objeto.inserir()
+			objeto.Inserir()
 		case "0":
 			pass
 
@@ -35,18 +32,18 @@ def MenuUser():
 
 n = 1
 
-lista = Usuarios.Usuario().load_json(json_Index)
+lista = Usuarios.Usuario().load_json("ListaUsuario.json")
 
 while n != 0:
-	y = 0
-	while y == 0:
+	x = 0
+	while x == 0:
 		x = input("Usuario: ")
 
 		if Usuarios.Usuario().busca(x) is None:
 			print("Usuario não existe")
-			y = 0
+			x = 0
 		else:
-			y = 1
+			x = 1
 
 	senha = None
 
@@ -54,7 +51,7 @@ while n != 0:
 		senha = input("Senha: ")
 		pos = Usuarios.Usuario().busca(x)
 
-		if senha != lista[pos]["senha"] :
+		if lista[pos]["senha"] is None:
 			print("Senha incorreta")
 			senha = None
 

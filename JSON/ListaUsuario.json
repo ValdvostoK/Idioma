@@ -10,12 +10,6 @@
             "codigo": "Barbara",
             "posicao": 1,
             "esq": null,
-            "dir": "Nicholas"
-        },
-        {
-            "codigo": "Nicholas",
-            "posicao": 2,
-            "esq": null,
             "dir": null
         }
     ]

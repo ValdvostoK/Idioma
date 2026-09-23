@@ -70,7 +70,7 @@ class Usuario:
             checagem = Idiomas.Idioma().busca(cod_idioma)
             if checagem is None:
                 print("Codigo invalido")
-        lista = self.load_json(json_Index)
+        lista = Usuario.load_json(json_Index)
         index = {"usuarios": [{"codigo": item["codigo"], "nome": item["nome"],
                                "senha": item["senha"],
                                "cod_idioma": item["cod_idioma"],
@@ -142,54 +142,6 @@ class Usuario:
                 pontos = y["pontos_atual"]
                 print(f'{x}° Lugar: {nome} - {pontos} pontos')
 
-    def minimo(self, cod):
-        while cod.esq:
-            cod = cod.esq
-        return cod
-
-    def excluir(self, codigo, atual = None):
-
-        if atual is None:
-            atual = self.raiz    
-
-        if codigo < atual.codigo:
-                atual.esq = self.excluir(codigo, atual.esq)
-
-        elif codigo > atual.codigo:
-                atual.dir = self.excluir(codigo, atual.dir)
-        else:
-            if atual.esq is None:
-                return atual.dir
-                    
-            elif atual.dir is None:
-                return atual.esq
-
-            sucessor = atual.dir
-            sucessor = self.minimo(sucessor)
-            atual.codigo = sucessor.codigo  
-            atual.posicao = sucessor.posicao  
-            atual.dir = self.excluir(atual.codigo, atual.dir)     
-
-        return atual
-
-    def remover(self):
-        codigo = input("Qual codigo: ")
-        x = self.busca(codigo)
-        if x:
-            self.excluir(codigo)
-            index = self.load_json(json_Index)
-            index[x]["codigo"] = 0
-
-            with open(json_Index, "r", encoding="utf-8") as f:
-                dados = json.load(f)
-            dados["usuarios"] = index
-
-            with open(json_Index, "w", encoding="utf-8") as g:
-                json.dump(dados, g, indent=4, ensure_ascii=False)
-            self.save_json()
-        else:
-            print("Nao existe")
-
     def dicionario(self, node, lista = None):
 
         if lista is None:
@@ -222,8 +174,7 @@ class Usuario:
         print("Arquivo salvo") 
 
 
-#arvore = Usuario()
-#arvore.ranking("Nicholas")
-#arvore.aula("Valdrei") 
+arvore = Usuario()
+#arvore.ranking()
+arvore.aula("Valdrei") 
 #arvore.inserir()
-#arvore.remover()

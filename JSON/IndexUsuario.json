@@ -6,7 +6,7 @@
             "senha": "python",
             "cod_idioma": "Ingles",
             "nivel": 1,
-            "pontos_atual": 109.0
+            "pontos_atual": 71
         },
         {
             "codigo": "Barbara",
@@ -15,14 +15,6 @@
             "cod_idioma": "Alemao",
             "nivel": 1,
             "pontos_atual": 110
-        },
-        {
-            "codigo": "Nicholas",
-            "nome": "Nicholas",
-            "senha": "moto",
-            "cod_idioma": "Alemao",
-            "nivel": 1,
-            "pontos_atual": 200
         }
     ]
 }

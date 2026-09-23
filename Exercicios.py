@@ -1,10 +1,11 @@
 import json
 from pathlib import Path
 import random
-#import Exercicios
+import Palavras
+import Idiomas
 
-json_Lista = Path(__file__).parent / "JSON" / "ListaPalavra.json"
-json_Index = Path(__file__).parent / "JSON" / "IndexPalavra.json"
+json_Lista = Path(__file__).parent / "JSON" / "ListaExercicio.json"
+json_Index = Path(__file__).parent / "JSON" / "IndexExercicio.json"
 
 class Node:
 
@@ -17,14 +18,14 @@ class Node:
     def __repr__(self):
         return f"Node({self.codigo})"  
 
-class Palavra:
+class Exercicio:
 
     def __innit__(self):
         self.raiz = None
         self.montagem()
 
     def montagem(self):
-        lista = Palavra.load_json(json_Lista)
+        lista = Exercicio.load_json(json_Lista)
         nodes = {}
         for item in lista:
             codigo = item["codigo"]
@@ -43,43 +44,15 @@ class Palavra:
         raiz_codigo = lista[0]["codigo"]
         self.raiz = nodes[raiz_codigo] 
     
-        return nodes 
-
-    def busca(self, codigo):
-        atual = self.raiz
-        while atual is not None and atual.codigo != codigo:
-            if codigo < atual.codigo:
-                atual = atual.esq
-            elif codigo > atual.codigo:
-                atual = atual.dir
-        if atual is not None:
-            return atual.posicao
-        else:            
-            return None
-
-    def gerar_codigo(self):
-        while True:
-            novo = random.randint(1, 1000000)
-            if self.busca(novo) is None:
-                return novo 
+        return nodes
 
     def inserir(self):
-        self.montagem()
         #x = self.gerar_codigo()
-        print(self.raiz)
-        descricao = input("Qual descricao? ")
+        descricao = input("Qual nome? ")
         x = descricao
-        cod_idioma = input("Qual idioma? ")
-        #Idiomas.Idioma().busca(cod_idioma)
-        trad = input("Traducao:  ")
-        nvl = int(input("Qual nivel? "))
-        lista = Palavra.load_json(json_Index)
-        index = {"palavras": [{"codigo": item["codigo"],
-                               "cod_idioma": item["cod_idioma"],
-                               "nivel": item["nivel"],
-                               "descricao": item["descricao"],
-                               "traducao": item["traducao"]} for item in lista]}
-        pos = len(index["palavras"]) 
+        lista = self.load_json(json_Index)
+        index = {"exercicios": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
+        pos = len(index["exercicios"]) 
         y = Node(x, pos)
         atual = self.raiz
         while True:
@@ -97,9 +70,8 @@ class Palavra:
 
         conf = input("Confirmar insercao(S/N)")
         if conf.lower() == "s":
-            novo = {"codigo": x, "cod_idioma": cod_idioma, "nivel": nvl,
-                     "descricao": descricao, "traducao": trad}
-            index["palavras"].append(novo)
+            novo = {"codigo": x, "descricao": descricao}
+            index["idiomas"].append(novo)
             with open(json_Index, "w", encoding="utf-8") as g:
                 json.dump(index, g, indent=4, ensure_ascii=False)
             self.save_json()
@@ -108,11 +80,23 @@ class Palavra:
 
         return None
 
-    def exercicio(self, nivel, idioma):
-        lista = Palavra.load_json(json_Index)
-        nivelada = [(p["codigo"], p["traducao"]) for p in lista if p["nivel"] == nivel and p["cod_idioma"] == idioma]
-        nova = random.sample(nivelada, 4)
-        return nova
+    def pergunta(self, idioma, nivel):
+        lista = Palavras.Palavra().exercicio(nivel, idioma)
+        dados = self.load_json(json_Index)
+        pergunta = dados[0]["pergunta"]
+        traducao = random.randint(0, 3)
+        print(pergunta, lista[traducao][1], "?")
+
+        for x, y in lista:
+            print(x)
+        resposta = input()
+
+        if resposta.lower() == lista[traducao][0].lower():
+            print("Correto")
+            return dados[0]["pontos"]
+        else:
+            print("Incorreto")
+            return (dados[0]["pontos"]*(-0.1))
 
     def dicionario(self, node, lista = None):
 
@@ -131,23 +115,21 @@ class Palavra:
 
         self.dicionario(node.esq, lista)       
         self.dicionario(node.dir, lista)
-
+        
         return lista
 
     def save_json(self):
-        dados = {"palavras": self.dicionario(self.raiz)}
+        dados = {"exercicios": self.dicionario(self.raiz)}
         with open(json_Lista, "w", encoding="utf-8") as f:
             json.dump(dados, f, indent = 4, ensure_ascii = False) 
         print("Arquivo salvo")
 
-    def load_json(caminho):
+    def load_json(self, caminho):
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
-        return dados["palavras"]
+        return dados["exercicios"]
 
-#pal = Palavra()
-#pal.montagem()
-#pal.montagem()
-#x=input("blala")
-#pal.exercicio(1, "Ingles")
-#print(pal.montagem())
+#ex = Exercicio()
+#massa = 1
+#ex.inserir()
+#ex.exercicios(massa)

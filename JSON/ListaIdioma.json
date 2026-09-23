@@ -1,50 +1,44 @@
 {
     "idiomas": [
         {
-            "codigo": 500000,
+            "codigo": "Ingles",
             "posicao": 0,
-            "esq": 238514,
-            "dir": 761362
+            "esq": "Alemao",
+            "dir": "Russo"
         },
         {
-            "codigo": 238514,
+            "codigo": "Alemao",
             "posicao": 1,
-            "esq": 110241,
-            "dir": 442257
+            "esq": null,
+            "dir": "Espanhol"
         },
         {
-            "codigo": 110241,
+            "codigo": "Espanhol",
             "posicao": 2,
             "esq": null,
-            "dir": 112419
+            "dir": "Frances"
         },
         {
-            "codigo": 112419,
+            "codigo": "Frances",
             "posicao": 3,
             "esq": null,
             "dir": null
         },
         {
-            "codigo": 442257,
+            "codigo": "Russo",
             "posicao": 4,
-            "esq": null,
+            "esq": "Japones",
             "dir": null
         },
         {
-            "codigo": 761362,
+            "codigo": "Japones",
             "posicao": 5,
-            "esq": 512493,
-            "dir": 887784
-        },
-        {
-            "codigo": 512493,
-            "posicao": 6,
-            "esq": null,
+            "esq": "Italiano",
             "dir": null
         },
         {
-            "codigo": 887784,
-            "posicao": 7,
+            "codigo": "Italiano",
+            "posicao": 6,
             "esq": null,
             "dir": null
         }
