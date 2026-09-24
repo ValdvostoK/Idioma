@@ -152,6 +152,47 @@ class Usuario:
                 pontos = y["pontos_atual"]
                 print(f'{x}° Lugar: {nome} - {pontos} pontos')
 
+    def alterar(self, nome):
+        x = self.busca(nome)
+        lista = self.load_json(json_Index)
+
+        print(f'Usuario: {nome} || Idioma atual: {lista[x]["cod_idioma"]}')
+
+        y = input('\nDeseja alterar o idioma aprendido? (s/n)')
+
+        if y == 's':
+            idiomas = Idiomas.Idioma().load_json(json_IndexIdioma)
+            dupla = [(p["codigo"]) for p in idiomas]
+
+            for w in dupla:
+                print(w)
+
+            check = None
+
+            while check is None:
+                y = input('\nQual idioma gostaria?')
+                check = Idiomas.Idioma().busca(y)
+
+                if check is None:
+                    print('Idioma invalido')
+
+            lista[x]["cod_idioma"] = y
+            lista[x]["nivel"] = 1
+            lista[x]["pontos_atual"] = 0
+
+            with open(json_Index, "r", encoding="utf-8") as f:
+                dados = json.load(f)
+            dados["usuarios"] = lista
+
+            with open(json_Index, "w", encoding="utf-8") as g:
+                json.dump(dados, g, indent=4, ensure_ascii=False)
+
+            print(f'Alterado idioma para {y}')
+
+        else:
+            print("Alteracao cancelada")
+
+
     def dicionario(self, node, lista = None):
 
         if lista is None:
@@ -186,5 +227,6 @@ class Usuario:
 
 arvore = Usuario()
 #arvore.ranking()
-arvore.aula("Valdrei") 
+#arvore.aula("Valdrei") 
 #arvore.inserir()
+arvore.alterar("Valdrei")

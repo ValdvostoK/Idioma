@@ -1,4 +1,5 @@
 import Usuarios
+import os
 
 
 def MenuAdmin():
@@ -26,8 +27,35 @@ def MenuAdmin():
 			pass
 
 
-def MenuUser():
-	print("menu user")
+def MenuUser(nome):
+	x = 0
+	while x != 0:
+		print("1 - Fazer licao?")
+		print("2 - Alterar idioma")
+		print("3 - Ver ranking")
+		print("0 - Sair")
+		k = int(input("\nSelecione uma opcao"))
+
+		match k:
+			case "1":
+				y = 's'
+				while y == 's':
+					os("cls")
+					print("Usuario: ", nome)
+					y = input("Fazer licao? (s/n)")
+					if y == 's':
+						Usuarios.Usuario().exercicio(nome)
+					else:
+						print("Aula encerrada")
+
+			case "2":
+				Usuarios.Usuario().alterar(nome)
+
+			case "3":
+				Usuarios.Usuario().ranking(nome)
+
+			case "0":
+				x = 0
 
 
 n = 1
