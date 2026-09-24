@@ -1,0 +1,22 @@
+{
+    "usuarios": [
+        {
+            "codigo": "Valdrei",
+            "posicao": 0,
+            "esq": "Barbara",
+            "dir": null
+        },
+        {
+            "codigo": "Barbara",
+            "posicao": 1,
+            "esq": null,
+            "dir": "Nicholas"
+        },
+        {
+            "codigo": "Nicholas",
+            "posicao": 2,
+            "esq": null,
+            "dir": null
+        }
+    ]
+}
