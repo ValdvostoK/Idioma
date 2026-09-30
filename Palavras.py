@@ -110,7 +110,11 @@ class Palavra:
 
     def exercicio(self, nivel, idioma):
         lista = Palavra.load_json(json_Index)
-        nivelada = [(p["codigo"], p["traducao"]) for p in lista if p["nivel"] == nivel and p["cod_idioma"] == idioma]
+        nivelada = [(p["codigo"], p["traducao"]) for p in lista if p["nivel"] <= nivel and p["cod_idioma"] == idioma]
+        if len(nivelada) < 4:
+            print("Em manutencao")
+            return 0
+        
         nova = random.sample(nivelada, 4)
         return nova
 

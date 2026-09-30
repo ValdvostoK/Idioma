@@ -225,8 +225,8 @@ class Usuario:
         print("Arquivo salvo") 
 
 
-arvore = Usuario()
+#arvore = Usuario()
 #arvore.ranking()
 #arvore.aula("Valdrei") 
 #arvore.inserir()
-arvore.alterar("Valdrei")
+#arvore.alterar("Valdrei")

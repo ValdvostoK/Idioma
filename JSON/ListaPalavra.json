@@ -22,6 +22,12 @@
             "codigo": "Pencil",
             "posicao": 3,
             "esq": null,
+            "dir": "Screen"
+        },
+        {
+            "codigo": "Screen",
+            "posicao": 4,
+            "esq": null,
             "dir": null
         }
     ]

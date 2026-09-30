@@ -27,6 +27,13 @@
             "nivel": 1,
             "descricao": "Pencil",
             "traducao": "Lapis"
+        },
+        {
+            "codigo": "Screen",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "descricao": "Screen",
+            "traducao": "Tela"
         }
     ]
 }

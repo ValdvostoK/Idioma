@@ -1,6 +1,9 @@
 import Usuarios
 import os
+from pathlib import Path
 
+json_Lista = Path(__file__).parent / "JSON" / "ListaUsuario.json"
+json_Index = Path(__file__).parent / "JSON" / "IndexUsuario.json"
 
 def MenuAdmin():
 	print("1 - Inserir")
@@ -8,27 +11,31 @@ def MenuAdmin():
 	print("3 - Consultar")
 	print("0 - Sair")
 	k = input("O que deseja fazer: ")
-	match k:
-		case "1":
-			print("Idiomas")
-			print("Palavras")
-			print("Licoes")
-			print("Exercicios")
-			print("Usuarios")
+	if k == 'Sair':
+		return 0
+	#match k:
+		#case "1":
+	print("Idiomas")
+	print("Palavras")
+	print("Licoes")
+	print("Exercicios")
+	print("Usuarios")
 
-			j = input("Em qual arquivo? ")
+	j = input("Em qual arquivo? ")
 
-			modulo = __import__(j)
-			classe = getattr(modulo, j[:-1])
-			objeto = classe()
+	modulo = __import__(j)
+	classe = getattr(modulo, j[:-1])
+	objeto = classe()
+	funcao = getattr(objeto, k)
+	funcao()
 
-			objeto.Inserir()
-		case "0":
-			pass
+			#objeto.Inserir()
+		#case "0":
+			#pass
 
 
 def MenuUser(nome):
-	x = 0
+	x = 7
 	while x != 0:
 		print("1 - Fazer licao?")
 		print("2 - Alterar idioma")
@@ -37,37 +44,37 @@ def MenuUser(nome):
 		k = int(input("\nSelecione uma opcao"))
 
 		match k:
-			case "1":
+			case  1:
 				y = 's'
 				while y == 's':
-					os("cls")
+					#os("cls")
 					print("Usuario: ", nome)
 					y = input("Fazer licao? (s/n)")
 					if y == 's':
-						Usuarios.Usuario().exercicio(nome)
+						Usuarios.Usuario().aula(nome)
 					else:
 						print("Aula encerrada")
 
-			case "2":
+			case 2:
 				Usuarios.Usuario().alterar(nome)
 
-			case "3":
+			case  3:
 				Usuarios.Usuario().ranking(nome)
 
-			case "0":
+			case  0:
 				x = 0
 
 
 n = 1
 
-lista = Usuarios.Usuario().load_json("ListaUsuario.json")
+lista = Usuarios.Usuario().load_json(json_Index)
 
 while n != 0:
 	x = 0
 	while x == 0:
-		x = input("Usuario: ")
+		y = input("Usuario: ")
 
-		if Usuarios.Usuario().busca(x) is None:
+		if Usuarios.Usuario().busca(y) is None:
 			print("Usuario não existe")
 			x = 0
 		else:
@@ -77,9 +84,9 @@ while n != 0:
 
 	while senha is None:
 		senha = input("Senha: ")
-		pos = Usuarios.Usuario().busca(x)
+		pos = Usuarios.Usuario().busca(y)
 
-		if lista[pos]["senha"] is None:
+		if lista[pos]["senha"] != senha:
 			print("Senha incorreta")
 			senha = None
 
@@ -87,10 +94,10 @@ while n != 0:
 		#----MENU ADMIN----
 		admin = 1
 		while admin != 0:
-			MenuAdmin()
+			admin = MenuAdmin()
 
 	else:
 		#----MENU ALUNO----
 		user = 1
 		while user != 0:
-			MenuUser()
+			MenuUser(y)
