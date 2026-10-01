@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 import random
 import Idiomas
-import Licoes
+import Licaos
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaUsuario.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexUsuario.json"
@@ -110,7 +110,7 @@ class Usuario:
         lista = self.load_json(json_Index)
         idioma = lista[pos]["cod_idioma"]
         nivel = lista[pos]["nivel"]
-        pontos = int(Licoes.Licao().exercicio(idioma, nivel))
+        pontos = int(Licaos.Licao().exercicio(idioma, nivel))
         lista[pos]["pontos_atual"] += pontos
         level = str(lista[pos]["pontos_atual"])
         antiga = int(level)
@@ -151,6 +151,56 @@ class Usuario:
                 nome = y['nome']
                 pontos = y["pontos_atual"]
                 print(f'{x}° Lugar: {nome} - {pontos} pontos')
+
+    def minimo(self, cod):
+        while cod.esq:
+            cod = cod.esq
+        return cod
+
+    def excluir(self, codigo, atual = None):
+
+        if atual is None:
+            atual = self.raiz    
+
+        if codigo < atual.codigo:
+                atual.esq = self.excluir(codigo, atual.esq)
+
+        elif codigo > atual.codigo:
+                atual.dir = self.excluir(codigo, atual.dir)
+        else:
+            if atual.esq is None:
+                return atual.dir
+                    
+            elif atual.dir is None:
+                return atual.esq
+
+            sucessor = atual.dir
+            sucessor = self.minimo(sucessor)
+            atual.codigo = sucessor.codigo  
+            atual.posicao = sucessor.posicao  
+            atual.dir = self.excluir(atual.codigo, atual.dir)     
+
+        return atual
+
+    def remover(self):
+        codigo = input("Qual codigo: ")
+        x = self.busca(codigo)
+        if x:
+            self.excluir(codigo)
+            index = self.load_json(json_Index)
+            index[x]["codigo"] = 0
+
+            with open(json_Index, "r", encoding = "utf-8") as f:
+                dados = json.load(f)
+            dados["usuarios"] = index
+
+            with open(json_Index, "w", encoding="utf-8") as g:
+                json.dump(dados, g, indent=4, ensure_ascii=False)
+
+
+            self.save_json()
+        else:
+            print("Nao existe")
 
     def alterar(self, nome):
         x = self.busca(nome)

@@ -1,20 +1,20 @@
 import Usuarios
-import os
 from pathlib import Path
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaUsuario.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexUsuario.json"
 
 def MenuAdmin():
-	print("1 - Inserir")
-	print("2 - Remover")
-	print("3 - Consultar")
-	print("0 - Sair")
+	print("Inserir")
+	print("Remover")
+	print("Consultar")
+	print("Sair")
+
 	k = input("O que deseja fazer: ")
+
 	if k == 'Sair':
 		return 0
-	#match k:
-		#case "1":
+
 	print("Idiomas")
 	print("Palavras")
 	print("Licoes")
@@ -28,10 +28,6 @@ def MenuAdmin():
 	objeto = classe()
 	funcao = getattr(objeto, k)
 	funcao()
-
-			#objeto.Inserir()
-		#case "0":
-			#pass
 
 
 def MenuUser(nome):
@@ -47,7 +43,6 @@ def MenuUser(nome):
 			case  1:
 				y = 's'
 				while y == 's':
-					#os("cls")
 					print("Usuario: ", nome)
 					y = input("Fazer licao? (s/n)")
 					if y == 's':
@@ -62,23 +57,27 @@ def MenuUser(nome):
 				Usuarios.Usuario().ranking(nome)
 
 			case  0:
-				x = 0
-
+				return 0
 
 n = 1
-
 lista = Usuarios.Usuario().load_json(json_Index)
 
 while n != 0:
 	x = 0
 	while x == 0:
 		y = input("Usuario: ")
+		if y == '0':
+			n=0
+			break
 
 		if Usuarios.Usuario().busca(y) is None:
 			print("Usuario não existe")
 			x = 0
 		else:
 			x = 1
+
+	if y == '0':
+		break
 
 	senha = None
 
@@ -91,13 +90,13 @@ while n != 0:
 			senha = None
 
 	if pos == 0:
-		#----MENU ADMIN----
 		admin = 1
 		while admin != 0:
 			admin = MenuAdmin()
 
 	else:
-		#----MENU ALUNO----
 		user = 1
 		while user != 0:
-			MenuUser(y)
+			user = MenuUser(y)
+
+print("Programa encerrado")
