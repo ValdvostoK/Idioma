@@ -148,9 +148,9 @@ class Palavra:
             dados = json.load(f)  
         return dados["palavras"]
 
-pal = Palavra()
+#pal = Palavra()
 #pal.montagem()
-pal.inserir()
+#pal.inserir()
 #x=input("blala")
 #pal.exercicio(1, "Ingles")
 #print(pal.montagem())

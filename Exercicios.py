@@ -95,7 +95,7 @@ class Exercicio:
             print("Correto")
             return dados[0]["pontos"]
         else:
-            print("Incorreto")
+            print(f'Incorreto a resposta certa era {lista[traducao][0]}')
             return (dados[0]["pontos"]*(-0.1))
 
     def dicionario(self, node, lista = None):
