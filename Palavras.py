@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 import random
-#import Exercicios
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaPalavra.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexPalavra.json"
@@ -149,9 +148,9 @@ class Palavra:
             dados = json.load(f)  
         return dados["palavras"]
 
-#pal = Palavra()
+pal = Palavra()
 #pal.montagem()
-#pal.montagem()
+pal.inserir()
 #x=input("blala")
 #pal.exercicio(1, "Ingles")
 #print(pal.montagem())

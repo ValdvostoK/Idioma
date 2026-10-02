@@ -36,6 +36,7 @@ def MenuUser(nome):
 		print("1 - Fazer licao?")
 		print("2 - Alterar idioma")
 		print("3 - Ver ranking")
+		print("4 - Certificado")
 		print("0 - Sair")
 		k = int(input("\nSelecione uma opcao"))
 
@@ -55,6 +56,9 @@ def MenuUser(nome):
 
 			case  3:
 				Usuarios.Usuario().ranking(nome)
+
+			case 4:
+				Usuarios.Usuario().certificado(nome)
 
 			case  0:
 				return 0

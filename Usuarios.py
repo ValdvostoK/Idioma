@@ -118,10 +118,13 @@ class Usuario:
             level = int(level[:-2])
             lista[pos]["nivel"] = level + 1
 
-        if antiga < lista[pos]["nivel"]:
-            print(f'Subiu de nivel')
-        elif antiga > lista[pos]["nivel"]:
-            print(f'Caiu de nivel')
+        if antiga > lista[pos]["nivel"]:
+            print(f'Subiu para o nivel {lista[pos]["nivel"]}')
+        elif antiga < lista[pos]["nivel"]:
+            print(f'Caiu para o nivel {lista[pos]["nivel"]}')
+
+        if lista[pos]["nivel"] == 5:
+            print(f'Parabens {user}, voce concluiu o curso e tem direito a seu certificado')
 
         with open(json_Index, "r", encoding="utf-8") as f:
             dados = json.load(f)
@@ -129,6 +132,15 @@ class Usuario:
                 
         with open(json_Index, "w", encoding="utf-8") as g:
             json.dump(dados, g, indent=4, ensure_ascii=False)
+
+    def certificado(self, nome):
+        pos = self.busca(nome)
+        lista = self.load_json(json_Index)
+        if lista[pos]["nivel"] == 5:
+            print(f'Parabens {nome} voce concluiu o curso de {lista[pos]["cod_idioma"]}!')
+        else:
+            print(f'{nome} ainda esta no nivel {lista[pos]["nivel"]} e não pode obter o certificado ainda')
+
 
     def ranking(self, user):
         dados = self.load_json(json_Index)
