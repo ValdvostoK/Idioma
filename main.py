@@ -12,7 +12,7 @@ def MenuAdmin():
 
 	k = input("O que deseja fazer: ")
 
-	if k == 'Sair':
+	if k.lower() == 'sair':
 		return 0
 
 	print("Idiomas")
@@ -26,7 +26,7 @@ def MenuAdmin():
 	modulo = __import__(j)
 	classe = getattr(modulo, j[:-1])
 	objeto = classe()
-	funcao = getattr(objeto, k)
+	funcao = getattr(objeto, k.lower())
 	funcao()
 
 
@@ -93,7 +93,7 @@ while n != 0:
 			print("Senha incorreta")
 			senha = None
 
-	if pos == 0:
+	if y == 'Admin':
 		admin = 1
 		while admin != 0:
 			admin = MenuAdmin()

@@ -1,8 +1,8 @@
 {
     "usuarios": [
         {
-            "codigo": "Valdrei",
-            "nome": "Valdrei",
+            "codigo": "Marcos",
+            "nome": "Marcos",
             "senha": "python",
             "cod_idioma": "Italiano",
             "nivel": 1,
@@ -29,6 +29,14 @@
             "nome": "Nicholas",
             "senha": "capacete",
             "cod_idioma": "Russo",
+            "nivel": 1,
+            "pontos_atual": 0
+        },
+        {
+            "codigo": "Admin",
+            "nome": "Admin",
+            "senha": "admin",
+            "cod_idioma": "Espanhol",
             "nivel": 1,
             "pontos_atual": 0
         }
