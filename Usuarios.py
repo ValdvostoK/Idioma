@@ -141,6 +141,37 @@ class Usuario:
         else:
             print(f'{nome} ainda esta no nivel {lista[pos]["nivel"]} e não pode obter o certificado ainda')
 
+    def consultar(self):
+        consulta = 's'  
+        while consulta.lower() == 's':
+            lista = self.load_json(json_Index)
+            att = [(p["codigo"]) for p in lista if p["codigo"] != 0 and p["codigo"] != "Admin"]
+
+            for x in att:
+                print(x)
+
+            pos = None
+            while pos is None:
+                nome = input('Qual nome consultar? (0 para sair) ')
+                if nome == "0":
+                    break
+
+                pos = self.busca(nome)
+                if pos is None:
+                    print('Nome inválido')
+
+            if nome == "0":
+                break
+
+            print(f'Nome: {lista[pos]["nome"]}')
+            print(f'Senha: {lista[pos]["senha"]}')
+            print(f'Idioma: {lista[pos]["cod_idioma"]}')
+            print(f'Nível: {lista[pos]["nivel"]}')
+            print(f'Pontos: {lista[pos]["pontos_atual"]}')
+
+            consulta = input('Realizar nova consulta? (s/n) ').lower()
+
+        print('Consulta finalizada')
 
     def ranking(self, user):
         dados = self.load_json(json_Index)
@@ -287,8 +318,8 @@ class Usuario:
         print("Arquivo salvo") 
 
 
-#arvore = Usuario()
+arvore = Usuario()
 #arvore.ranking()
 #arvore.aula("Valdrei") 
-#arvore.inserir()
+arvore.consultar()
 #arvore.alterar("Valdrei")
