@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 import random
 import Palavras
-import Idiomas
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaExercicio.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexExercicio.json"
@@ -128,8 +127,3 @@ class Exercicio:
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
         return dados["exercicios"]
-
-#ex = Exercicio()
-#massa = 1
-#ex.inserir()
-#ex.exercicios(massa)

@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import random
+import Verificacao
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaPalavra.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexPalavra.json"
@@ -23,7 +24,7 @@ class Palavra:
         self.montagem()
 
     def montagem(self):
-        lista = Palavra.load_json(json_Lista)
+        lista = self.load_json(json_Lista)
         nodes = {}
         for item in lista:
             codigo = item["codigo"]
@@ -56,23 +57,28 @@ class Palavra:
         else:            
             return None
 
-    def gerar_codigo(self):
-        while True:
-            novo = random.randint(1, 1000000)
-            if self.busca(novo) is None:
-                return novo 
-
     def inserir(self):
         self.montagem()
-        #x = self.gerar_codigo()
-        print(self.raiz)
-        descricao = input("Qual descricao? ")
+        check = 0
+        while check == 0:
+            descricao = input("Nova Palavra: ")
+            verificacao = self.busca(descricao)
+            if verificacao is not None:
+                print("Palavra ja existe ")
+            else:
+                check = 1
         x = descricao
-        cod_idioma = input("Qual idioma? ")
-        #Idiomas.Idioma().busca(cod_idioma)
+        check = 0
+        while check == 0:
+            cod_idioma = input("Qual idioma? ")
+            verificacao = Verificacao.Verifica().busca(cod_idioma)
+            if verificacao is not None:
+                check = 1
+            else:
+                print("Idioma não existe")
         trad = input("Traducao:  ")
         nvl = int(input("Qual nivel? "))
-        lista = Palavra.load_json(json_Index)
+        lista = self.load_json(json_Index)
         index = {"palavras": [{"codigo": item["codigo"],
                                "cod_idioma": item["cod_idioma"],
                                "nivel": item["nivel"],
@@ -108,7 +114,7 @@ class Palavra:
         return None
 
     def exercicio(self, nivel, idioma):
-        lista = Palavra.load_json(json_Index)
+        lista = self.load_json(json_Index)
         nivelada = [(p["codigo"], p["traducao"]) for p in lista if p["nivel"] <= nivel and p["cod_idioma"] == idioma]
         if len(nivelada) < 4:
             print("Em manutencao")
@@ -143,14 +149,8 @@ class Palavra:
             json.dump(dados, f, indent = 4, ensure_ascii = False) 
         print("Arquivo salvo")
 
-    def load_json(caminho):
+    def load_json(self, caminho):
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
         return dados["palavras"]
 
-#pal = Palavra()
-#pal.montagem()
-#pal.inserir()
-#x=input("blala")
-#pal.exercicio(1, "Ingles")
-#print(pal.montagem())

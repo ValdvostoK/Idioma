@@ -21,24 +21,66 @@
         {
             "codigo": "Because",
             "posicao": 7,
-            "esq": null,
+            "esq": "Apple",
             "dir": "Cat"
+        },
+        {
+            "codigo": "Apple",
+            "posicao": 13,
+            "esq": "Apfel",
+            "dir": "Bear"
+        },
+        {
+            "codigo": "Apfel",
+            "posicao": 14,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Bear",
+            "posicao": 43,
+            "esq": null,
+            "dir": null
         },
         {
             "codigo": "Cat",
             "posicao": 9,
+            "esq": "Brain",
+            "dir": "Challenge"
+        },
+        {
+            "codigo": "Brain",
+            "posicao": 15,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Challenge",
+            "posicao": 16,
             "esq": null,
             "dir": null
         },
         {
             "codigo": "Dog",
             "posicao": 8,
-            "esq": null,
+            "esq": "Desarrollar",
             "dir": "Duck"
+        },
+        {
+            "codigo": "Desarrollar",
+            "posicao": 17,
+            "esq": null,
+            "dir": null
         },
         {
             "codigo": "Duck",
             "posicao": 11,
+            "esq": null,
+            "dir": "Ephemeral"
+        },
+        {
+            "codigo": "Ephemeral",
+            "posicao": 18,
             "esq": null,
             "dir": null
         },
@@ -46,11 +88,65 @@
             "codigo": "Heat",
             "posicao": 10,
             "esq": "Fish",
-            "dir": null
+            "dir": "House"
         },
         {
             "codigo": "Fish",
             "posicao": 12,
+            "esq": null,
+            "dir": "Gato"
+        },
+        {
+            "codigo": "Gato",
+            "posicao": 19,
+            "esq": null,
+            "dir": "Gatto"
+        },
+        {
+            "codigo": "Gatto",
+            "posicao": 33,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "House",
+            "posicao": 20,
+            "esq": "Giardino",
+            "dir": "Hund"
+        },
+        {
+            "codigo": "Giardino",
+            "posicao": 34,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Hund",
+            "posicao": 21,
+            "esq": null,
+            "dir": "Inolvidable"
+        },
+        {
+            "codigo": "Inolvidable",
+            "posicao": 22,
+            "esq": "Ippopotamo",
+            "dir": "Journey"
+        },
+        {
+            "codigo": "Ippopotamo",
+            "posicao": 35,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Journey",
+            "posicao": 23,
+            "esq": null,
+            "dir": "Katze"
+        },
+        {
+            "codigo": "Katze",
+            "posicao": 24,
             "esq": null,
             "dir": null
         },
@@ -58,23 +154,113 @@
             "codigo": "Water",
             "posicao": 1,
             "esq": "Table",
-            "dir": null
+            "dir": "Wissenschaft"
         },
         {
             "codigo": "Table",
             "posicao": 2,
             "esq": "Pencil",
-            "dir": null
+            "dir": "Unabhangig"
         },
         {
             "codigo": "Pencil",
             "posicao": 3,
-            "esq": null,
+            "esq": "Olio",
             "dir": "Screen"
+        },
+        {
+            "codigo": "Olio",
+            "posicao": 37,
+            "esq": "Manzana",
+            "dir": null
+        },
+        {
+            "codigo": "Manzana",
+            "posicao": 25,
+            "esq": "Libro",
+            "dir": null
+        },
+        {
+            "codigo": "Libro",
+            "posicao": 36,
+            "esq": null,
+            "dir": null
         },
         {
             "codigo": "Screen",
             "posicao": 4,
+            "esq": "Queso",
+            "dir": "Siempre"
+        },
+        {
+            "codigo": "Queso",
+            "posicao": 38,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Siempre",
+            "posicao": 27,
+            "esq": "Rana",
+            "dir": "Sol"
+        },
+        {
+            "codigo": "Rana",
+            "posicao": 39,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Sol",
+            "posicao": 40,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Unabhangig",
+            "posicao": 28,
+            "esq": null,
+            "dir": "Vogel"
+        },
+        {
+            "codigo": "Vogel",
+            "posicao": 29,
+            "esq": "Usted",
+            "dir": null
+        },
+        {
+            "codigo": "Usted",
+            "posicao": 44,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Wissenschaft",
+            "posicao": 30,
+            "esq": null,
+            "dir": "Zealous"
+        },
+        {
+            "codigo": "Zealous",
+            "posicao": 31,
+            "esq": "Xilofono",
+            "dir": "Zorro"
+        },
+        {
+            "codigo": "Xilofono",
+            "posicao": 41,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Zorro",
+            "posicao": 32,
+            "esq": "Yate",
+            "dir": null
+        },
+        {
+            "codigo": "Yate",
+            "posicao": 42,
             "esq": null,
             "dir": null
         }

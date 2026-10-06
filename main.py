@@ -38,14 +38,14 @@ def MenuUser(nome):
 		print("3 - Ver ranking")
 		print("4 - Certificado")
 		print("0 - Sair")
-		k = int(input("\nSelecione uma opcao"))
+		k = int(input("\nSelecione uma opcao \n"))
 
 		match k:
 			case  1:
 				y = 's'
 				while y == 's':
 					print("Usuario: ", nome)
-					y = input("Fazer licao? (s/n)")
+					y = input("Fazer licao? (s/n) ")
 					if y == 's':
 						Usuarios.Usuario().aula(nome)
 					else:

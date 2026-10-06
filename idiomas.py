@@ -1,9 +1,10 @@
 import json
 from pathlib import Path
-import random
+import Palavras
 
 json_Lista = Path(__file__).parent / "JSON" / "ListaIdioma.json"
 json_Index = Path(__file__).parent / "JSON" / "IndexIdioma.json"
+json_Index_Palavra = Path(__file__).parent / "JSON" / "IndexPalavra.json"
 
 class Node:
 
@@ -54,17 +55,17 @@ class Idioma:
         if atual is not None:
             return atual.posicao
         else:            
-            return None
-
-    def gerar_codigo(self):
-        while True:
-            novo = random.randint(1, 1000000)
-            if self.busca(novo) is None:
-                return novo     
+            return None  
 
     def inserir(self):
-        #x = self.gerar_codigo()
-        descricao = input("Qual nome? Idioma")
+        check = 0
+        while check == 0:
+            descricao = input("Qual Idioma?")
+            verificacao = self.busca(descricao)
+            if verificacao is not None:
+                print("Idioma ja existe")
+            else:
+                check = 1
         x = descricao
         lista = self.load_json(json_Index)
         index = {"idiomas": [{"codigo": item["codigo"], "descricao": item["descricao"]} for item in lista]}
@@ -146,6 +147,39 @@ class Idioma:
         else:
             print("Nao existe")
 
+    def consultar(self):
+        consulta = 's'  
+        while consulta.lower() == 's':
+            lista = self.load_json(json_Index)
+            att = [(p["codigo"]) for p in lista if p["codigo"] != 0]
+
+            for x in att:
+                print(x)
+
+            pos = None
+            while pos is None:
+                idioma = input('Qual idioma consultar? (0 para sair) ')
+                if idioma == "0":
+                    break
+
+                pos = self.busca(idioma)
+                if pos is None:
+                    print('Nome inválido')
+
+            if idioma == "0":
+                break
+
+            lista_palavra = Palavras.Palavra().load_json(json_Index_Palavra)
+            palavras = [(p["codigo"], p["traducao"], p["nivel"]) for p in lista_palavra if p["cod_idioma"] == idioma]
+
+            print(f'Palavra        Traducao       Nivel\n')
+            for a, b, c in palavras:
+                print(f'{a:<14} {b:<14} {c}')
+
+            consulta = input('Realizar nova consulta? (s/n) ').lower()
+
+        print('Consulta finalizada')
+
     def dicionario(self, node, lista = None):
 
         if lista is None:
@@ -177,17 +211,5 @@ class Idioma:
             json.dump(dados, f, indent = 4, ensure_ascii = False) 
         print("Arquivo salvo") 
 
-
 #arvore = Idioma()
-
-#arvore.montagem() 
-#print("Resultado do print", lista)
-
-#x = int(input("Qual numero"))
-#mouse = arvore.busca(x)
-#print("mouse: ", mouse)
-
-#desc = input("descricao  ")
 #arvore.inserir()
-#print(arvore)
-#arvore.remover()

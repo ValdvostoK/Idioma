@@ -50,48 +50,6 @@ class Licao:
         acento = "".join(c for c in decompor if unicodedata.category(c) != 'Mn')
         return acento.casefold()
 
-    def inserir(self):
-        x = self.gerar_codigo()
-        descricao = input("Pergunta da licao: ")
-        cod_idioma = int(input("Qual idioma? "))
-        Palavras.Palavra().busca(cod_idioma)
-        trad = input("Traducao:  ")
-        nvl = int(input("Qual nivel? "))
-        lista = Licao.load_json(json_Index)
-        index = {"palavras": [{"codigo": item["codigo"],
-                               "cod_idioma": item["cod_idioma"],
-                               "nivel": item["nivel"],
-                               "descricao": item["descricao"],
-                               "traducao": item["traducao"]} for item in lista]}
-        pos = len(index["palavras"]) 
-        y = Node(x, pos)
-        atual = self.raiz
-        while True:
-            if  x < atual.codigo:
-                if atual.esq is None:
-                    atual.esq = y
-                    break
-                atual = atual.esq
-
-            elif x > atual.codigo:
-                if atual.dir is None:
-                    atual.dir = y
-                    break
-                atual = atual.dir  
-
-        conf = input("Confirmar insercao(S/N)")
-        if conf.lower() == "s":
-            novo = {"codigo": x, "cod_idioma": cod_idioma, "nivel": nvl,
-                     "descricao": descricao, "traducao": trad}
-            index["licoes"].append(novo)
-            with open(json_Index, "w", encoding="utf-8") as g:
-                json.dump(index, g, indent=4, ensure_ascii=False)
-            self.save_json()
-        else:
-            print("Op cancelada")      
-
-        return None
-
     def exercicio(self, idioma, nivel):
         ex1 = Exercicios.Exercicio().pergunta(idioma, nivel)
         ex2 = Exercicios.Exercicio().pergunta(idioma, nivel)
@@ -128,8 +86,3 @@ class Licao:
         with open(caminho, "r", encoding = "utf-8") as f:
             dados = json.load(f)  
         return dados["licoes"]
-
-
-#text = input("Digite:  ")
-#limpo = Licao.limpar(text)
-#print(limpo)

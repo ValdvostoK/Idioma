@@ -10,11 +10,17 @@
             "codigo": "Barbara",
             "posicao": 1,
             "esq": "Admin",
-            "dir": null
+            "dir": "Joao"
         },
         {
             "codigo": "Admin",
             "posicao": 4,
+            "esq": null,
+            "dir": null
+        },
+        {
+            "codigo": "Joao",
+            "posicao": 5,
             "esq": null,
             "dir": null
         },

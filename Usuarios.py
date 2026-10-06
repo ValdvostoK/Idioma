@@ -1,6 +1,5 @@
 import json
 from pathlib import Path
-import random
 import Idiomas
 import Licaos
 
@@ -60,8 +59,7 @@ class Usuario:
             return None
 
     def inserir(self):
-        #x = self.gerar_codigo()
-        nome = input("Qual nome? Usuario")
+        nome = input("Nome: ")
         x = nome
         senha = input("Senha: ")
         checagem = None
@@ -316,10 +314,3 @@ class Usuario:
         with open(json_Lista, "w", encoding="utf-8") as f:
             json.dump(dados, f, indent = 4, ensure_ascii = False) 
         print("Arquivo salvo") 
-
-
-arvore = Usuario()
-#arvore.ranking()
-#arvore.aula("Valdrei") 
-arvore.consultar()
-#arvore.alterar("Valdrei")

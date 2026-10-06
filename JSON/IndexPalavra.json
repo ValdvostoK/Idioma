@@ -90,6 +90,230 @@
             "nivel": 1,
             "descricao": "Fish",
             "traducao": "Peixe"
+        },
+        {
+            "codigo": "Apple",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "descricao": "Apple",
+            "traducao": "Maca"
+        },
+        {
+            "codigo": "Apfel",
+            "cod_idioma": "Alemao",
+            "nivel": 1,
+            "descricao": "Apfel",
+            "traducao": "Maca"
+        },
+        {
+            "codigo": "Brain",
+            "cod_idioma": "Ingles",
+            "nivel": 4,
+            "descricao": "Brain",
+            "traducao": "Cerebro"
+        },
+        {
+            "codigo": "Challenge",
+            "cod_idioma": "Ingles",
+            "nivel": 3,
+            "descricao": "Challenge",
+            "traducao": "Desafio"
+        },
+        {
+            "codigo": "Desarrollar",
+            "cod_idioma": "Espanhol",
+            "nivel": 4,
+            "descricao": "Desarrollar",
+            "traducao": "Desenvolver"
+        },
+        {
+            "codigo": "Ephemeral",
+            "cod_idioma": "Ingles",
+            "nivel": 5,
+            "descricao": "Ephemeral",
+            "traducao": "Efemero"
+        },
+        {
+            "codigo": "Gato",
+            "cod_idioma": "Espanhol",
+            "nivel": 1,
+            "descricao": "Gato",
+            "traducao": "Gato"
+        },
+        {
+            "codigo": "House",
+            "cod_idioma": "Ingles",
+            "nivel": 1,
+            "descricao": "House",
+            "traducao": "Casa"
+        },
+        {
+            "codigo": "Hund",
+            "cod_idioma": "Alemao",
+            "nivel": 1,
+            "descricao": "Hund",
+            "traducao": "Cachorro"
+        },
+        {
+            "codigo": "Inolvidable",
+            "cod_idioma": "Espanhol",
+            "nivel": 3,
+            "descricao": "Inolvidable",
+            "traducao": "Inesquecivel"
+        },
+        {
+            "codigo": "Journey",
+            "cod_idioma": "Ingles",
+            "nivel": 2,
+            "descricao": "Journey",
+            "traducao": "Jornada"
+        },
+        {
+            "codigo": "Katze",
+            "cod_idioma": "Alemao",
+            "nivel": 1,
+            "descricao": "Katze",
+            "traducao": "Gato"
+        },
+        {
+            "codigo": "Manzana",
+            "cod_idioma": "Espanhol",
+            "nivel": 1,
+            "descricao": "Manzana",
+            "traducao": "Maca"
+        },
+        {
+            "codigo": "Perro",
+            "cod_idioma": "Espanhol",
+            "nivel": 1,
+            "descricao": "Perro",
+            "traducao": "Cachorro"
+        },
+        {
+            "codigo": "Siempre",
+            "cod_idioma": "Espanhol",
+            "nivel": 1,
+            "descricao": "Siempre",
+            "traducao": "Sempre"
+        },
+        {
+            "codigo": "Unabhangig",
+            "cod_idioma": "Alemao",
+            "nivel": 5,
+            "descricao": "Unabhangig",
+            "traducao": "Independente"
+        },
+        {
+            "codigo": "Vogel",
+            "cod_idioma": "Alemao",
+            "nivel": 2,
+            "descricao": "Vogel",
+            "traducao": "Passaro"
+        },
+        {
+            "codigo": "Wissenschaft",
+            "cod_idioma": "Alemao",
+            "nivel": 4,
+            "descricao": "Wissenschaft",
+            "traducao": "Ciencia"
+        },
+        {
+            "codigo": "Zealous",
+            "cod_idioma": "Ingles",
+            "nivel": 5,
+            "descricao": "Zealous",
+            "traducao": "Zeloso"
+        },
+        {
+            "codigo": "Zorro",
+            "cod_idioma": "Espanhol",
+            "nivel": 2,
+            "descricao": "Zorro",
+            "traducao": "Raposa"
+        },
+        {
+            "codigo": "Gatto",
+            "cod_idioma": "Italiano",
+            "nivel": 1,
+            "descricao": "Gatto",
+            "traducao": "Gato"
+        },
+        {
+            "codigo": "Giardino",
+            "cod_idioma": "Italiano",
+            "nivel": 2,
+            "descricao": "Giardino",
+            "traducao": "Jardim"
+        },
+        {
+            "codigo": "Ippopotamo",
+            "cod_idioma": "Italiano",
+            "nivel": 2,
+            "descricao": "Ippopotamo",
+            "traducao": "Hipopotamo"
+        },
+        {
+            "codigo": "Libro",
+            "cod_idioma": "Italiano",
+            "nivel": 1,
+            "descricao": "Libro",
+            "traducao": "Livro"
+        },
+        {
+            "codigo": "Olio",
+            "cod_idioma": "Italiano",
+            "nivel": 2,
+            "descricao": "Olio",
+            "traducao": "Azeite"
+        },
+        {
+            "codigo": "Queso",
+            "cod_idioma": "Espanhol",
+            "nivel": 1,
+            "descricao": "Queso",
+            "traducao": "Queijo"
+        },
+        {
+            "codigo": "Rana",
+            "cod_idioma": "Espanhol",
+            "nivel": 2,
+            "descricao": "Rana",
+            "traducao": "Ra"
+        },
+        {
+            "codigo": "Sol",
+            "cod_idioma": "Espanhol",
+            "nivel": 1,
+            "descricao": "Sol",
+            "traducao": "Sol"
+        },
+        {
+            "codigo": "Xilofono",
+            "cod_idioma": "Italiano",
+            "nivel": 3,
+            "descricao": "Xilofono",
+            "traducao": "Xilofone"
+        },
+        {
+            "codigo": "Yate",
+            "cod_idioma": "Espanhol",
+            "nivel": 2,
+            "descricao": "Yate",
+            "traducao": "Iate"
+        },
+        {
+            "codigo": "Bear",
+            "cod_idioma": "Ingles",
+            "nivel": 2,
+            "descricao": "Bear",
+            "traducao": "Urso"
+        },
+        {
+            "codigo": "Usted",
+            "cod_idioma": "Espanhol",
+            "nivel": 2,
+            "descricao": "Usted",
+            "traducao": "Voce"
         }
     ]
 }

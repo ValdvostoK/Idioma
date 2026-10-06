@@ -13,8 +13,8 @@
             "nome": "Barbara",
             "senha": "cachorro",
             "cod_idioma": "Ingles",
-            "nivel": 3,
-            "pontos_atual": 266
+            "nivel": 5,
+            "pontos_atual": 414
         },
         {
             "codigo": 0,
@@ -36,6 +36,14 @@
             "codigo": "Admin",
             "nome": "Admin",
             "senha": "admin",
+            "cod_idioma": "Espanhol",
+            "nivel": 1,
+            "pontos_atual": 0
+        },
+        {
+            "codigo": "Joao",
+            "nome": "Joao",
+            "senha": "cadeira",
             "cod_idioma": "Espanhol",
             "nivel": 1,
             "pontos_atual": 0
